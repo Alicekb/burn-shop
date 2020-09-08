@@ -7,7 +7,7 @@ const NavBar = styled.nav`
     grid-template: 1fr / 1fr repeat(3, auto);
     align-items: center;
     list-style: none;
-    padding: 0 2em;
+    padding: 0;
 
     li:not(:first-child) {
       margin-left: 15px;
