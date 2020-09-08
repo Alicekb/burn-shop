@@ -1,30 +1,67 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">Welcome to Burn Shop 👋</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000" />
+  <a href="TBD" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
+  <a href="https://choosealicense.com/licenses/gpl-3.0/#" target="_blank">
+    <img alt="License: GNUv3" src="https://img.shields.io/badge/License-GNUv3-yellow.svg" />
+  </a>
+  <a href="https://twitter.com/lazyalleycat" target="_blank">
+    <img alt="Twitter: lazyalleycat" src="https://img.shields.io/twitter/follow/lazyalleycat.svg?style=social" />
+  </a>
+</p>
 
-## Getting Started
+> An E-commerce website that allows the purchasing of items for the Burn Bryte role playing game.
 
-First, run the development server:
+<!-- ### 🏠 [Homepage](TBD)
 
-```bash
-npm run dev
-# or
-yarn dev
+### ✨ [Demo](TBD) -->
+
+## Purpose
+This project was mostly build to gain exerience in the following technologies:
+
+* Next.js
+* Overmind
+* Formik
+* Realkit
+* Emotion
+* FaunaDB w/ ApolloClient
+
+## Install
+
+```sh
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```sh
+pnpm run start
+```
 
-## Learn More
+## Run tests
 
-To learn more about Next.js, take a look at the following resources:
+```sh
+pnpm run test
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Author
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+👤 **Alice Balbuena**
 
-## Deploy on Vercel
+<!-- * Website: TBD -->
+* Twitter: [@lazyalleycat](https://twitter.com/lazyalleycat)
+* Github: [@alicekb](https://github.com/alicekb)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Show your support
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Give a ⭐️ if this project helped you!
+
+## 📝 License
+
+Copyright © 2020 [Alice Balbuena](https://github.com/alicekb).<br />
+This project is [GNUv3](LICENSE.md) licensed.
+
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
