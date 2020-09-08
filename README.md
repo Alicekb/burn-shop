@@ -31,19 +31,13 @@ This project was mostly build to gain exerience in the following technologies:
 ## Install
 
 ```sh
-pnpm install
+npm install
 ```
 
 ## Usage
 
 ```sh
-pnpm run start
-```
-
-## Run tests
-
-```sh
-pnpm run test
+npm run dev
 ```
 
 ## Author
