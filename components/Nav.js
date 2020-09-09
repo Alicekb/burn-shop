@@ -20,6 +20,7 @@ const Logo = styled.li`
   display: flex;
   align-items: center;
   font-size: 2rem;
+  font-weight: 700;
   color: ${(props) => props.theme.colors.burnt};
 `;
 
