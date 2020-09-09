@@ -47,16 +47,20 @@ const SliderButton = styled.button`
 
 const SLIDER_IMAGES = [
   {
-    url: "burn-shop/banners/coffee-station.jpg",
+    url: "coffee-station.jpg",
     alt: "Coffee station cups of various colors",
   },
   {
-    url: "burn-shop/banners/salvaing.jpg",
+    url: "salvaing.jpg",
     alt: "Savaging Services by Wessh Overguild over a broken plane",
   },
   {
-    url: "burn-shop/banners/camera.jpg",
+    url: "camera.jpg",
     alt: "Advanced Camera red series next to red drone",
+  },
+  {
+    url: "cosmos.jpg",
+    alt: "Cosmos Interceptor Spaceship by Kosma Overguild and A.C.E Foundation",
   },
 ];
 
@@ -80,7 +84,7 @@ const Slider = () => {
       <a href="#">
         <SliderImage
           cloudName="aliceb"
-          publicId={SLIDER_IMAGES[current].url}
+          publicId={`burn-shop/banners/${SLIDER_IMAGES[current].url}`}
           alt={SLIDER_IMAGES[current].alt}
         ></SliderImage>
       </a>
