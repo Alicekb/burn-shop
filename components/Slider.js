@@ -3,7 +3,6 @@ import { Image } from "cloudinary-react";
 import styled from "@emotion/styled";
 
 const SliderDiv = styled.div`
-  width: 100vw;
   height: 40vh;
 
   @media (min-width: 700px) {
@@ -33,16 +32,15 @@ const SliderButton = styled.button`
     left: 35%;
   }
 
-  @media (min-width: 1200px) {
-    left: 40%;
-  }
-
   opacity: ${(props) => (props.active ? "100%" : "50%")};
   margin-left: 10px;
   height: 10px;
-  width: 100px;
+  width: 50px;
   border: 0;
   border-radius: 25px;
+  @media (min-width: 1000px) {
+    width: 100px;
+  }
 `;
 
 const SLIDER_IMAGES = [
@@ -86,7 +84,7 @@ const Slider = () => {
           cloudName="aliceb"
           publicId={`burn-shop/banners/${SLIDER_IMAGES[current].url}`}
           alt={SLIDER_IMAGES[current].alt}
-        ></SliderImage>
+        />
       </a>
       {SLIDER_IMAGES.map((image, index) => (
         <SliderButton
