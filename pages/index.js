@@ -6,7 +6,6 @@ import { useTabState, Tab, TabList, TabPanel } from "reakit/Tab";
 import { Box } from "reakit/Box";
 
 const MainArea = styled.div`
-  margin-left: 20px;
   @media (min-width: 1000px) {
     max-width: 1180px;
     margin: 0 auto;
@@ -15,8 +14,20 @@ const MainArea = styled.div`
 
 const TabMenu = styled(TabList)`
   margin-top: 30px;
-  button:not(:first-of-type) {
-    margin-left: 10px;
+  @media (max-width: 700px) {
+    button {
+      margin-bottom: 3px;
+      width: 100%;
+    }
+  }
+  @media (min-width: 700px) {
+    margin-left: 20px;
+    button:not(:first-of-type) {
+      margin-left: 10px;
+    }
+  }
+  @media (min-width: 1000px) {
+    margin-left: 0;
   }
 `;
 
@@ -36,21 +47,25 @@ const TabButton = styled(Tab)`
 
 const ItemGrid = styled.ul`
   display: grid;
-  grid-template-columns: 16rem;
-  list-style: none;
-  margin: 15px 0 0 15%;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  margin: 15px 0;
   padding: 0;
+  list-style: none;
   @media (min-width: 700px) {
     grid-template-columns: repeat(3, 15rem);
-    margin-left: 0;
+    justify-items: start;
+    margin-left: 20px;
   }
   @media (min-width: 1000px) {
     grid-template-columns: repeat(4, 16rem);
+    justify-items: start;
+    margin-left: 0;
   }
 `;
 
 const ItemBox = styled(Box)`
-  width: 14rem;
+  width: 20rem;
   height: 100%;
   h2 {
     margin-top: 10px;
@@ -61,6 +76,9 @@ const ItemBox = styled(Box)`
   }
   img:hover {
     border: 2px solid ${({ theme: { colors } }) => colors.burnt};
+  }
+  @media (min-width: 700px) {
+    width: 14rem;
   }
 `;
 
