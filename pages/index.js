@@ -8,7 +8,7 @@ import { Box } from "reakit/Box";
 const MainArea = styled.div`
   margin-left: 20px;
   @media (min-width: 1000px) {
-    max-width: 90%;
+    max-width: 1180px;
     margin: 0 auto;
   }
 `;

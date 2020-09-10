@@ -17,6 +17,9 @@ const NavBar = styled.nav`
       text-align: center;
     }
   }
+  @media (min-width: 1000px) {
+    width: 1180px;
+  }
 `;
 
 const Logo = styled.li`
