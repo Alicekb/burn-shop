@@ -1,22 +1,25 @@
 import { Image, Transformation } from "cloudinary-react";
-import { ItemBox } from "./styles";
+import { ItemBox, ImageBox } from "./styles";
 
-const Item = ({ cloud_filename, cost, description, name }) => {
+const Item = ({ cloud_filename, cost, name, tag }) => {
   return (
     <ItemBox>
       <a href="">
-        <Image
-          cloudName="aliceb"
-          publicId={`burn-shop/items/${cloud_filename}`}
-          alt={cloud_filename}
-        >
-          <Transformation
-            width="150"
-            height="150"
-            gravity="face"
-            crop="thumb"
-          />
-        </Image>
+        <ImageBox>
+          <Image
+            cloudName="aliceb"
+            publicId={`burn-shop/items/${cloud_filename}`}
+            alt={cloud_filename}
+          >
+            <Transformation
+              width="150"
+              height="150"
+              gravity="face"
+              crop="thumb"
+            />
+          </Image>
+          {tag ? <p>{tag}</p> : null}
+        </ImageBox>
         <h2>{name}</h2>
         <p>{cost} Argent</p>
       </a>

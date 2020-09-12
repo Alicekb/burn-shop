@@ -126,6 +126,7 @@ const Home = () => {
                     cost={item.cost}
                     description={item.description}
                     name={item.name}
+                    tag="NEW"
                   />
                 </li>
               ))}
