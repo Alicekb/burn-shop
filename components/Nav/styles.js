@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
-import { FaShoppingCart, FaUser, FaBurn } from "react-icons/fa";
 
-const NavBar = styled.nav`
+export const NavBar = styled.nav`
   width: 90%;
   margin: 0 auto;
   margin-top: 5px;
@@ -22,32 +21,10 @@ const NavBar = styled.nav`
   }
 `;
 
-const Logo = styled.li`
+export const Logo = styled.li`
   display: flex;
   align-items: center;
   font-size: 2rem;
   font-weight: 700;
   color: ${(props) => props.theme.colors.burnt};
 `;
-
-const Nav = () => {
-  return (
-    <NavBar>
-      <ul>
-        <Logo>
-          <FaBurn />
-          burnbot
-        </Logo>
-        <li>Shop</li>
-        <li>
-          <FaUser />
-        </li>
-        <li>
-          <FaShoppingCart />
-        </li>
-      </ul>
-    </NavBar>
-  );
-};
-
-export default Nav;
