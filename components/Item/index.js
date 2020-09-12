@@ -1,18 +1,7 @@
-import { Image } from "cloudinary-react";
+import { Image, Transformation } from "cloudinary-react";
 import { ItemBox } from "./styles";
 
-const Item = ({
-  category,
-  cloud_filename,
-  cost,
-  description,
-  name,
-  subcategory,
-}) => {
-  function setSubcategory() {
-    return subcategory === "n/a" ? null : `- ${subcategory}`;
-  }
-
+const Item = ({ cloud_filename, cost, description, name }) => {
   return (
     <ItemBox>
       <a href="">
@@ -20,14 +9,17 @@ const Item = ({
           cloudName="aliceb"
           publicId={`burn-shop/items/${cloud_filename}`}
           alt={cloud_filename}
-        />
+        >
+          <Transformation
+            width="150"
+            height="150"
+            gravity="face"
+            crop="thumb"
+          />
+        </Image>
+        <h2>{name}</h2>
+        <p>{cost} Argent</p>
       </a>
-      <h2>{name}</h2>
-      <h3>
-        {category} {setSubcategory()}
-      </h3>
-      <p>{description}</p>
-      <p>{cost} Argent</p>
     </ItemBox>
   );
 };

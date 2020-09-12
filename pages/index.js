@@ -122,12 +122,10 @@ const Home = () => {
               {data.items.map((item) => (
                 <li key={item.id}>
                   <Item
-                    category={item.category}
                     cloud_filename={item.cloud_filename}
                     cost={item.cost}
                     description={item.description}
                     name={item.name}
-                    subcategory={item.subcategory}
                   />
                 </li>
               ))}
