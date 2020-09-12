@@ -1,17 +1,33 @@
+import { Image } from "cloudinary-react";
 import { ItemBox } from "./styles";
 
-const Item = () => {
+const Item = ({
+  category,
+  cloud_filename,
+  cost,
+  description,
+  name,
+  subcategory,
+}) => {
+  function setSubcategory() {
+    return subcategory === "n/a" ? null : `- ${subcategory}`;
+  }
+
   return (
     <ItemBox>
       <a href="">
-        <img src="https://via.placeholder.com/150"></img>
+        <Image
+          cloudName="aliceb"
+          publicId={`burn-shop/items/${cloud_filename}`}
+          alt={cloud_filename}
+        />
       </a>
-      <h2>Advanced Camera</h2>
-      <p>
-        Basic cameras take pictures and video and post or stream them to the
-        Complenet through manual functionality. Advanced cameras can...
-      </p>
-      <p>2000 Argent</p>
+      <h2>{name}</h2>
+      <h3>
+        {category} {setSubcategory()}
+      </h3>
+      <p>{description}</p>
+      <p>{cost} Argent</p>
     </ItemBox>
   );
 };

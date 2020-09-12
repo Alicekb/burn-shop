@@ -1,9 +1,11 @@
 import Head from "next/head";
+import { useQuery, gql } from "@apollo/client";
+import { useTabState, Tab, TabList, TabPanel } from "reakit/Tab";
+import { withApollo } from "../lib/withApollo";
 import Nav from "../components/Nav";
 import Slider from "../components/Slider";
 import Item from "../components/Item";
 import styled from "@emotion/styled";
-import { useTabState, Tab, TabList, TabPanel } from "reakit/Tab";
 
 const MainArea = styled.div`
   @media (min-width: 1000px) {
@@ -64,8 +66,36 @@ const ItemGrid = styled.ul`
   }
 `;
 
-export default function Home() {
+const GET_MY_RECENT_ITEMS = gql`
+  query getMyRecentItems {
+    items(order_by: { created_at: desc }, limit: 10) {
+      category
+      cloud_filename
+      cost
+      description
+      id
+      name
+      stats
+      subcategory
+    }
+  }
+`;
+
+const Home = () => {
   const tab = useTabState({ selectedId: "tab1" });
+  const { loading, error, data } = useQuery(GET_MY_RECENT_ITEMS);
+
+  //! Implement a better loading/error process
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    console.error(error);
+    return <div>Error!</div>;
+  }
+
+  console.log(data.items);
   return (
     <>
       <Head>
@@ -89,9 +119,18 @@ export default function Home() {
           </TabMenu>
           <TabPanel {...tab} tabIndex="-1">
             <ItemGrid>
-              <li>
-                <Item />
-              </li>
+              {data.items.map((item) => (
+                <li key={item.id}>
+                  <Item
+                    category={item.category}
+                    cloud_filename={item.cloud_filename}
+                    cost={item.cost}
+                    description={item.description}
+                    name={item.name}
+                    subcategory={item.subcategory}
+                  />
+                </li>
+              ))}
             </ItemGrid>
           </TabPanel>
         </MainArea>
@@ -99,4 +138,6 @@ export default function Home() {
       <footer></footer>
     </>
   );
-}
+};
+
+export default withApollo()(Home);
