@@ -1,9 +1,9 @@
 import Head from "next/head";
 import Nav from "../components/Nav";
 import Slider from "../components/Slider";
+import Item from "../components/Item";
 import styled from "@emotion/styled";
 import { useTabState, Tab, TabList, TabPanel } from "reakit/Tab";
-import { Box } from "reakit/Box";
 
 const MainArea = styled.div`
   @media (min-width: 1000px) {
@@ -64,24 +64,6 @@ const ItemGrid = styled.ul`
   }
 `;
 
-const ItemBox = styled(Box)`
-  width: 20rem;
-  height: 100%;
-  h2 {
-    margin-top: 10px;
-    line-height: 1;
-  }
-  img {
-    width: 100%;
-  }
-  img:hover {
-    border: 2px solid ${({ theme: { colors } }) => colors.burnt};
-  }
-  @media (min-width: 700px) {
-    width: 14rem;
-  }
-`;
-
 export default function Home() {
   const tab = useTabState({ selectedId: "tab1" });
   return (
@@ -108,60 +90,7 @@ export default function Home() {
           <TabPanel {...tab} tabIndex="-1">
             <ItemGrid>
               <li>
-                <ItemBox>
-                  <a href="">
-                    <img src="https://via.placeholder.com/150"></img>
-                  </a>
-                  <h2>Advanced Camera</h2>
-                  <p>
-                    Basic cameras take pictures and video and post or stream
-                    them to the Complenet through manual functionality. Advanced
-                    cameras can...
-                  </p>
-                  <p>2000 Argent</p>
-                </ItemBox>
-              </li>
-              <li>
-                <ItemBox>
-                  <a href="">
-                    <img src="https://via.placeholder.com/150"></img>
-                  </a>
-                  <h2>Advanced Camera</h2>
-                  <p>
-                    Basic cameras take pictures and video and post or stream
-                    them to the Complenet through manual functionality. Advanced
-                    cameras can...
-                  </p>
-                  <p>2000 Argent</p>
-                </ItemBox>
-              </li>
-              <li>
-                <ItemBox>
-                  <a href="">
-                    <img src="https://via.placeholder.com/150"></img>
-                  </a>
-                  <h2>Advanced Camera</h2>
-                  <p>
-                    Basic cameras take pictures and video and post or stream
-                    them to the Complenet through manual functionality. Advanced
-                    cameras can...
-                  </p>
-                  <p>2000 Argent</p>
-                </ItemBox>
-              </li>
-              <li>
-                <ItemBox>
-                  <a href="">
-                    <img src="https://via.placeholder.com/150"></img>
-                  </a>
-                  <h2>Advanced Camera</h2>
-                  <p>
-                    Basic cameras take pictures and video and post or stream
-                    them to the Complenet through manual functionality. Advanced
-                    cameras can...
-                  </p>
-                  <p>2000 Argent</p>
-                </ItemBox>
+                <Item />
               </li>
             </ItemGrid>
           </TabPanel>
