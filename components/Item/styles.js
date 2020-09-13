@@ -6,13 +6,18 @@ export const ItemBox = styled(Box)`
   height: 100%;
   text-align: center;
 
+  &:hover {
+    a {
+      color: ${({ theme: { colors } }) => colors.burnt};
+    }
+    img {
+      border: 3px solid ${({ theme: { colors } }) => colors.burnt};
+    }
+  }
+
   a {
     color: black;
     text-decoration: none;
-
-    &:hover {
-      color: ${({ theme: { colors } }) => colors.burnt};
-    }
   }
 
   h2 {
