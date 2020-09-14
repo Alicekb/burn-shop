@@ -11,12 +11,7 @@ const Item = ({ cloud_filename, cost, name, tag }) => {
             publicId={`burn-shop/items/${cloud_filename}`}
             alt={cloud_filename}
           >
-            <Transformation
-              width="150"
-              height="150"
-              gravity="face"
-              crop="thumb"
-            />
+            <Transformation width="150" height="150" crop="fill" />
           </Image>
           {tag ? <p>{tag}</p> : null}
         </ImageBox>
