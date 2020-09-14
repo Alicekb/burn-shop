@@ -1,11 +1,11 @@
 import Head from "next/head";
 import { useQuery, gql } from "@apollo/client";
 import { withApollo } from "../lib/withApollo";
-import { Image, Transformation } from "cloudinary-react";
 import styled from "@emotion/styled";
 import Nav from "../components/Nav";
 import Slider from "../components/Slider";
 import HomeTab from "../components/HomeTab";
+import AdArea from "../components/AdArea";
 
 const MainArea = styled.div`
   margin-top: 30px;
@@ -20,14 +20,9 @@ const MainArea = styled.div`
   grid-template-columns: 1fr 1fr;
 `;
 
-const AdArea = styled.ul`
-  list-style: none;
-  padding: 0;
-`;
-
-const GET_MY_RECENT_ITEMS = gql`
+const GET_RECENT_ITEMS = gql`
   query getMyRecentItems {
-    items(order_by: { created_at: desc }, limit: 10) {
+    items(order_by: { created_at: desc }, limit: 20) {
       category
       cloud_filename
       cost
@@ -41,7 +36,7 @@ const GET_MY_RECENT_ITEMS = gql`
 `;
 
 const Home = () => {
-  const { loading, error, data } = useQuery(GET_MY_RECENT_ITEMS);
+  const { loading, error, data } = useQuery(GET_RECENT_ITEMS);
 
   //! Implement a better loading/error process
   if (loading) {
@@ -67,21 +62,7 @@ const Home = () => {
             <HomeTab items={data.items} />
           </div>
           <div>
-            <AdArea>
-              <li>
-                <Image
-                  cloudName="aliceb"
-                  publicId={"burn-shop/ads/new-camera.png"}
-                >
-                  <Transformation
-                    width="200"
-                    height="300"
-                    gravity="face"
-                    crop="thumb"
-                  />
-                </Image>
-              </li>
-            </AdArea>
+            <AdArea />
           </div>
         </MainArea>
       </main>
