@@ -23,28 +23,56 @@ const MainArea = styled.div`
 const GET_RECENT_ITEMS = gql`
   query getMyRecentItems {
     items(order_by: { created_at: desc }, limit: 20) {
-      category
       cloud_filename
       cost
-      description
-      id
       name
-      stats
-      subcategory
+    }
+  }
+`;
+
+const GET_ANNOUNCED_ITEMS = gql`
+  query getAnnouncedItems {
+    items(order_by: { updated_at: desc }, limit: 30, offset: 30) {
+      cloud_filename
+      cost
+      name
+    }
+  }
+`;
+
+const GET_FEATURED_ITEMS = gql`
+  query getFeaturedItems {
+    items(order_by: { cost: desc }, limit: 30) {
+      cloud_filename
+      cost
+      name
     }
   }
 `;
 
 const Home = () => {
-  const { loading, error, data } = useQuery(GET_RECENT_ITEMS);
+  const {
+    loading: recentLoading,
+    error: recentError,
+    data: recentItems,
+  } = useQuery(GET_RECENT_ITEMS);
+  const {
+    loading: announcedLoading,
+    error: announcedError,
+    data: announcedItems,
+  } = useQuery(GET_ANNOUNCED_ITEMS);
+  const {
+    loading: featuredLoading,
+    error: featuredError,
+    data: featuredItems,
+  } = useQuery(GET_FEATURED_ITEMS);
 
   //! Implement a better loading/error process
-  if (loading) {
+  if (recentLoading || announcedLoading || featuredLoading) {
     return <div>Loading...</div>;
   }
 
-  if (error) {
-    console.error(error);
+  if (recentError || announcedError || featuredError) {
     return <div>Error!</div>;
   }
 
@@ -59,7 +87,11 @@ const Home = () => {
         <Slider />
         <MainArea>
           <div>
-            <HomeTab items={data.items} />
+            <HomeTab
+              recentItems={recentItems.items}
+              announcedItems={announcedItems.items}
+              featuredItems={featuredItems.items}
+            />
           </div>
           <div>
             <AdArea />

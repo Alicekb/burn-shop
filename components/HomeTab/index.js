@@ -1,8 +1,8 @@
-import Item from '../Item';
+import Item from "../Item";
 import { useTabState, TabPanel } from "reakit/Tab";
 import { TabMenu, TabButton, ItemGrid } from "./styles";
 
-const HomeTab = ({ items }) => {
+const HomeTab = ({ recentItems, announcedItems, featuredItems }) => {
   const tab = useTabState({ selectedId: "tab1" });
 
   return (
@@ -20,7 +20,7 @@ const HomeTab = ({ items }) => {
       </TabMenu>
       <TabPanel {...tab} tabIndex="-1">
         <ItemGrid>
-          {items.map((item) => (
+          {recentItems.map((item) => (
             <li key={item.id}>
               <Item
                 cloud_filename={item.cloud_filename}
@@ -28,6 +28,35 @@ const HomeTab = ({ items }) => {
                 description={item.description}
                 name={item.name}
                 tag="NEW"
+              />
+            </li>
+          ))}
+        </ItemGrid>
+      </TabPanel>
+      <TabPanel {...tab} tabIndex="-1">
+        <ItemGrid>
+          {announcedItems.map((item) => (
+            <li key={item.id}>
+              <Item
+                cloud_filename={item.cloud_filename}
+                cost={item.cost}
+                description={item.description}
+                name={item.name}
+                tag="pre-order"
+              />
+            </li>
+          ))}
+        </ItemGrid>
+      </TabPanel>
+      <TabPanel {...tab} tabIndex="-1">
+        <ItemGrid>
+          {featuredItems.map((item) => (
+            <li key={item.id}>
+              <Item
+                cloud_filename={item.cloud_filename}
+                cost={item.cost}
+                description={item.description}
+                name={item.name}
               />
             </li>
           ))}
