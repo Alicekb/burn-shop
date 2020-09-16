@@ -23,7 +23,7 @@ const TabButton = styled(Tab)`
   padding: 10px 20px;
   background-color: ${({ id, theme, selectedId }) =>
     id === selectedId ? theme.colors.purple : "lightgrey"};
-  color: ${({ id, selectedId }) => (id === selectedId ? "white" : "#666666")};
+  color: ${({ id, selectedId }) => (id === selectedId ? "white" : "#4B4B4B")};
   border: 0;
   font-weight: 700;
 

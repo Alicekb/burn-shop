@@ -39,7 +39,7 @@ export const ImageBox = styled.div`
   p {
     position: absolute;
     top: 8px;
-    color: white;
+    color: ${({ theme: { colors } }) => colors.purple};
     font-weight: 700;
     background-color: ${({ theme: { colors } }) => colors.burnt};
     padding: 5px;

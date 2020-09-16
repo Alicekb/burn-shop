@@ -15,6 +15,9 @@ const AdItem = styled.li`
 
   a {
     color: black;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
   }
 
   div {
@@ -37,7 +40,8 @@ const AdItem = styled.li`
       margin-bottom: 0;
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: ${({ theme: { colors } }) => colors.purple};
       color: white;
       opacity: 95%;
