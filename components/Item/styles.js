@@ -43,5 +43,6 @@ export const ImageBox = styled.div`
     font-weight: 700;
     background-color: ${({ theme: { colors } }) => colors.burnt};
     padding: 5px;
+    transform: rotate(-13deg);
   }
 `;

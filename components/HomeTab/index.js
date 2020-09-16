@@ -42,7 +42,7 @@ const HomeTab = ({ recentItems, announcedItems, featuredItems }) => {
                 cost={item.cost}
                 description={item.description}
                 name={item.name}
-                tag="pre-order"
+                tag="PRE-ORDER"
               />
             </li>
           ))}
