@@ -23,6 +23,7 @@ const MainArea = styled.div`
 const GET_RECENT_ITEMS = gql`
   query getMyRecentItems {
     items(order_by: { created_at: desc }, limit: 20) {
+      id
       cloud_filename
       cost
       name
@@ -33,6 +34,7 @@ const GET_RECENT_ITEMS = gql`
 const GET_ANNOUNCED_ITEMS = gql`
   query getAnnouncedItems {
     items(order_by: { updated_at: desc }, limit: 30, offset: 30) {
+      id
       cloud_filename
       cost
       name
@@ -43,6 +45,7 @@ const GET_ANNOUNCED_ITEMS = gql`
 const GET_FEATURED_ITEMS = gql`
   query getFeaturedItems {
     items(order_by: { cost: desc }, limit: 30) {
+      id
       cloud_filename
       cost
       name
