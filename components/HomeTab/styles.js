@@ -47,7 +47,7 @@ const ItemGrid = styled.ul`
   }
 
   @media (min-width: 1000px) {
-    grid-template-columns: repeat(4, 16rem);
+    grid-template-columns: repeat(4, 14.5rem);
     justify-items: start;
     margin-left: 0;
   }

@@ -24,7 +24,7 @@ const AdItem = styled.li`
     position: absolute;
     top: ${(props) => (props.first ? "70%" : "60%")};
     left: 0;
-    height: 100%;
+    height: 40%;
     font-size: 12px;
     background-color: rgb(240, 240, 240);
     opacity: 85%;
