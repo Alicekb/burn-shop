@@ -39,10 +39,19 @@ export const ImageBox = styled.div`
   p {
     position: absolute;
     top: 8px;
-    color: ${({ theme: { colors } }) => colors.purple};
     font-weight: 700;
-    background-color: ${({ theme: { colors } }) => colors.burnt};
     padding: 5px;
-    transform: rotate(-13deg);
   }
+`;
+
+export const NewTag = styled.p`
+  color: ${({ theme: { colors } }) => colors.purple};
+  background-color: ${({ theme: { colors } }) => colors.burnt};
+`;
+
+export const SalesTag = styled.p`
+  color: white;
+  background-color: red;
+  border-radius: 50%;
+  transform: rotate(-13deg);
 `;

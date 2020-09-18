@@ -35,7 +35,7 @@ const IndexPage = {
 
 const GET_RECENT_ITEMS = gql`
   query getMyRecentItems {
-    items(order_by: { created_at: desc }, limit: 30) {
+    items(order_by: { created_at: desc }, limit: 20) {
       ...IndexPageItems
     }
   }
@@ -44,7 +44,7 @@ const GET_RECENT_ITEMS = gql`
 
 const GET_ANNOUNCED_ITEMS = gql`
   query getAnnouncedItems {
-    items(order_by: { updated_at: desc }, limit: 30) {
+    items(order_by: { updated_at: desc }, limit: 20) {
       ...IndexPageItems
     }
   }
@@ -53,7 +53,7 @@ const GET_ANNOUNCED_ITEMS = gql`
 
 const GET_FEATURED_ITEMS = gql`
   query getFeaturedItems {
-    items(order_by: { cost: desc }, limit: 30) {
+    items(order_by: { cost: desc }, limit: 20) {
       ...IndexPageItems
     }
   }

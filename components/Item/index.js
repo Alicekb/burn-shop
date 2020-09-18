@@ -1,7 +1,16 @@
 import { Image, Transformation } from "cloudinary-react";
-import { ItemBox, ImageBox } from "./styles";
+import { ItemBox, ImageBox, NewTag, SalesTag } from "./styles";
 
 const Item = ({ cloud_filename, cost, name, tag }) => {
+  function displayTag() {
+    if (tag === "new") {
+      return <NewTag>NEW</NewTag>;
+    }
+
+    if (tag == "sale") {
+      return <SalesTag>SALE</SalesTag>;
+    }
+  }
   return (
     <ItemBox>
       <a href="">
@@ -13,7 +22,7 @@ const Item = ({ cloud_filename, cost, name, tag }) => {
           >
             <Transformation width="150" height="150" crop="fill" />
           </Image>
-          {tag ? <p>{tag}</p> : null}
+          {displayTag()}
         </ImageBox>
         <h2>{name}</h2>
         <p>{cost} Argent</p>
