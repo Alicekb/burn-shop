@@ -14,7 +14,7 @@ const AdItem = styled.li`
   overflow: hidden;
 
   a {
-    color: black;
+    color: ${({ theme: { colors } }) => colors.purple};
     height: 100%;
     width: 100%;
     overflow: auto;
@@ -42,8 +42,10 @@ const AdItem = styled.li`
 
     &:hover,
     &:focus {
-      background-color: ${({ theme: { colors } }) => colors.purple};
-      color: white;
+      ${({ theme: { colors } }) => ({
+        backgroundColor: colors.burnt,
+        color: colors.purple
+      })}
       opacity: 95%;
     }
   }

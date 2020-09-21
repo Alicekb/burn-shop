@@ -45,8 +45,10 @@ export const ImageBox = styled.div`
 `;
 
 export const NewTag = styled.p`
-  color: ${({ theme: { colors } }) => colors.purple};
-  background-color: ${({ theme: { colors } }) => colors.burnt};
+  ${({ theme: { colors } }) => ({
+    backgroundColor: colors.burnt,
+    color: colors.purple,
+  })}
 `;
 
 export const SalesTag = styled.p`

@@ -21,9 +21,6 @@ const TabMenu = styled(TabList)`
 
 const TabButton = styled(Tab)`
   padding: 10px 20px;
-  background-color: ${({ id, theme, selectedId }) =>
-    id === selectedId ? theme.colors.purple : theme.colors.lightGrey};
-  color: ${({ id, selectedId, theme }) => (id === selectedId ? "white" : theme.colors.darkGrey)};
   border: 0;
   font-weight: 700;
 
@@ -31,6 +28,11 @@ const TabButton = styled(Tab)`
     background-color: ${({ theme: { colors } }) => colors.purple};
     color: white;
   }
+
+  ${({ id, theme: { colors }, selectedId }) => ({
+    backgroundColor: id === selectedId ? colors.purple : colors.lightgrey,
+    color: id === selectedId ? "white" : colors.darkGrey,
+  })}
 `;
 
 const ItemGrid = styled.ul`
