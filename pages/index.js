@@ -3,6 +3,7 @@ import { useQuery, gql } from "@apollo/client";
 import { withApollo } from "../lib/withApollo";
 import styled from "@emotion/styled";
 import Nav from "../components/Nav";
+import Footer from "../components/Footer";
 import Slider from "../components/Slider";
 import HomeTab from "../components/HomeTab";
 import AdArea from "../components/AdArea";
@@ -108,7 +109,7 @@ const Home = () => {
           </div>
         </MainArea>
       </main>
-      <footer></footer>
+      <Footer></Footer>
     </>
   );
 };
