@@ -25,13 +25,15 @@ const TabButton = styled(Tab)`
   font-weight: 700;
 
   &:hover {
-    background-color: ${({ theme: { colors } }) => colors.purple};
-    color: white;
+    ${({ theme: { colors } }) => ({
+      backgroundColor: colors.burnt,
+      color: colors.purple,
+    })}
   }
 
   ${({ id, theme: { colors }, selectedId }) => ({
-    backgroundColor: id === selectedId ? colors.purple : colors.lightgrey,
-    color: id === selectedId ? "white" : colors.darkGrey,
+    backgroundColor: id === selectedId ? colors.burnt : colors.lightGrey,
+    color: id === selectedId ? colors.purple : colors.darkGrey,
   })}
 `;
 

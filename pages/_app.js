@@ -7,8 +7,8 @@ const theme = {
     purple: "#220E32",
     orange: "#f28705",
     yellow: "#f2cb05",
-    lightGrey: "rgb(240, 240, 240)",
-    darkGrey: "#4B4B4B"
+    lightGrey: "#CCCCCC",
+    darkGrey: "#4B4B4B",
   },
 };
 

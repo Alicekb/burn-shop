@@ -52,8 +52,8 @@ export const NewTag = styled.p`
 `;
 
 export const SalesTag = styled.p`
-  color: white;
   background-color: red;
   border-radius: 50%;
+  color: white;
   transform: rotate(-13deg);
 `;
