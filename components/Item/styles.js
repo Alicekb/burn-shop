@@ -11,7 +11,7 @@ export const ItemBox = styled(Box)`
       color: ${({ theme: { colors } }) => colors.burnt};
     }
     img {
-      border: 3px solid ${({ theme: { colors } }) => colors.burnt};
+      outline: 3px solid ${({ theme: { colors } }) => colors.burnt};
     }
   }
 
