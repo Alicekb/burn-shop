@@ -5,7 +5,7 @@ const CustomImage = ({ imgUrl, imgAlt }) => {
   return (
     <AnimatePresence>
       <motion.div
-        initial={{ opacity: 0 }}
+        initial={{ opacity: 0.5 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
