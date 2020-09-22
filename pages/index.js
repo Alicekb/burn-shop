@@ -9,7 +9,7 @@ import HomeTab from "../components/HomeTab";
 import AdArea from "../components/AdArea";
 
 const MainArea = styled.div`
-  margin-top: 30px;
+  margin-top: 50px;
 
   @media (min-width: 1000px) {
     max-width: 1180px;

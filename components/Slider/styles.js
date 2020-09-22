@@ -11,6 +11,10 @@ export const SliderDiv = styled.div`
   @media (min-height: 1000px) {
     height: 30vh;
   }
+
+  div {
+    height: 100%;
+  }
 `;
 
 export const SliderImage = styled(Image)`
@@ -20,7 +24,6 @@ export const SliderImage = styled(Image)`
 
 export const SliderButton = styled.button`
   position: relative;
-  top: -10%;
   left: 25%;
 
   @media (min-width: 700px) {
@@ -30,8 +33,6 @@ export const SliderButton = styled.button`
   @media (min-width: 800px) {
     left: 35%;
   }
-
-  opacity: ${(props) => (props.active ? "100%" : "50%")};
   margin-left: 10px;
   height: 10px;
   width: 50px;
@@ -40,4 +41,11 @@ export const SliderButton = styled.button`
   @media (min-width: 1000px) {
     width: 100px;
   }
+
+  ${({ active, theme: { colors } }) => {
+    return {
+      opacity: active ? "100%" : "50%",
+      backgroundColor: colors.darkGrey,
+    };
+  }}
 `;

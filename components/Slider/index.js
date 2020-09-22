@@ -1,21 +1,22 @@
 import { useState, useEffect } from "react";
-import { SliderDiv, SliderImage, SliderButton } from "./styles";
+import CustomImage from "./CustomImage";
+import { SliderDiv, SliderButton } from "./styles";
 
 const SLIDER_IMAGES = [
   {
-    url: "coffee-station.jpg",
+    imgUrl: "coffee-station.jpg",
     alt: "Coffee station cups of various colors",
   },
   {
-    url: "salvaing.jpg",
+    imgUrl: "salvaing.jpg",
     alt: "Savaging Services by Wessh Overguild over a broken plane",
   },
   {
-    url: "camera.jpg",
+    imgUrl: "camera.jpg",
     alt: "Advanced Camera red series next to red drone",
   },
   {
-    url: "cosmos.jpg",
+    imgUrl: "cosmos.jpg",
     alt: "Cosmos Interceptor Spaceship by Kosma Overguild and A.C.E Foundation",
   },
 ];
@@ -25,7 +26,7 @@ const Slider = () => {
 
   useEffect(() => {
     const next = (current + 1) % SLIDER_IMAGES.length;
-    const id = setTimeout(() => setCurrent(next), 4000);
+    const id = setTimeout(() => setCurrent(next), 8000);
     return () => {
       clearTimeout(id);
     };
@@ -37,13 +38,11 @@ const Slider = () => {
 
   return (
     <SliderDiv>
-      <a href="#">
-        <SliderImage
-          cloudName="aliceb"
-          publicId={`burn-shop/banners/${SLIDER_IMAGES[current].url}`}
-          alt={SLIDER_IMAGES[current].alt}
-        />
-      </a>
+      <CustomImage
+        imgUrl={SLIDER_IMAGES[current].imgUrl}
+        imgAlt={SLIDER_IMAGES[current].alt}
+        key={current}
+      />
       {SLIDER_IMAGES.map((image, index) => (
         <SliderButton
           key={index}
