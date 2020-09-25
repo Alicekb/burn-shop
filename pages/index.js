@@ -1,12 +1,12 @@
 import Head from "next/head";
 import { useQuery, gql } from "@apollo/client";
-import { withApollo } from "../lib/withApollo";
+import { withApollo } from "@/lib/withApollo";
 import styled from "@emotion/styled";
-import Nav from "../components/Nav";
-import Footer from "../components/Footer";
-import Slider from "../components/Slider";
-import HomeTab from "../components/HomeTab";
-import AdArea from "../components/AdArea";
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
+import Slider from "@/components/Slider";
+import HomeTab from "@/components/HomeTab";
+import AdArea from "@/components/AdArea";
 
 const MainArea = styled.div`
   margin-top: 80px;
