@@ -37,24 +37,4 @@ const TabButton = styled(Tab)`
   })}
 `;
 
-const ItemGrid = styled.ul`
-  display: grid;
-  justify-items: center;
-  margin: 15px 0;
-  padding: 0;
-  list-style: none;
-
-  @media (min-width: 700px) {
-    grid-template-columns: repeat(3, 15rem);
-    justify-items: start;
-    margin-left: 20px;
-  }
-
-  @media (min-width: 1000px) {
-    grid-template-columns: repeat(4, 14.5rem);
-    justify-items: start;
-    margin-left: 0;
-  }
-`;
-
-export { TabMenu, TabButton, ItemGrid };
+export { TabMenu, TabButton };

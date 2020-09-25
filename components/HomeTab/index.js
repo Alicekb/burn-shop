@@ -1,6 +1,7 @@
 import Item from "../Item";
 import { useTabState, TabPanel } from "reakit/Tab";
-import { TabMenu, TabButton, ItemGrid } from "./styles";
+import { TabMenu, TabButton } from "./styles";
+import { ItemGrid } from "@/components/Item/styles";
 
 const HomeTab = ({ recentItems, announcedItems, featuredItems }) => {
   const tab = useTabState({ selectedId: "tab1" });
