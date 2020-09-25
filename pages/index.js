@@ -8,7 +8,7 @@ import Slider from "@/components/Slider";
 import HomeTab from "@/components/HomeTab";
 import AdArea from "@/components/AdArea";
 
-const MainArea = styled.div`
+export const MainArea = styled.div`
   margin-top: 80px;
 
   @media (min-width: 1000px) {
