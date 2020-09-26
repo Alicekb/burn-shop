@@ -22,7 +22,7 @@
 This project was mostly build to gain exerience in the following technologies:
 
 * Next.js
-* Overmind
+* Framer Motion
 * Formik
 * Realkit
 * Emotion
