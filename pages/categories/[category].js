@@ -1,11 +1,9 @@
-import Head from "next/head";
 import { useRouter } from "next/router";
 import styled from "@emotion/styled";
 import { useQuery, gql } from "@apollo/client";
 import { withApollo } from "@/lib/withApollo";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
 import Item from "@/components/Item";
+import Layout from "@/components/Layout";
 import { MainArea } from "@/pages/index";
 import { ItemGrid } from "@/components/Item/styles";
 
@@ -49,12 +47,7 @@ export const CategoryPage = () => {
 
   return (
     <>
-      <Head>
-        <title>{category} - Burn Shop</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Nav />
-      <main>
+      <Layout title={category}>
         <PageArea>
           <h2>{category.toUpperCase()}</h2>
 
@@ -85,8 +78,7 @@ export const CategoryPage = () => {
             ))}
           </ItemGrid>
         </PageArea>
-      </main>
-      <Footer />
+      </Layout>
     </>
   );
 };

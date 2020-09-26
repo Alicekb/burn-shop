@@ -1,9 +1,7 @@
-import Head from "next/head";
 import { useQuery, gql } from "@apollo/client";
 import { withApollo } from "@/lib/withApollo";
 import styled from "@emotion/styled";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
+import Layout from "@/components/Layout";
 import Slider from "@/components/Slider";
 import HomeTab from "@/components/HomeTab";
 import AdArea from "@/components/AdArea";
@@ -89,12 +87,7 @@ const Home = () => {
 
   return (
     <>
-      <Head>
-        <title>Home - Burn Shop</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Nav />
-      <main>
+      <Layout title="home">
         <Slider />
         <MainArea>
           <div>
@@ -108,8 +101,7 @@ const Home = () => {
             <AdArea />
           </div>
         </MainArea>
-      </main>
-      <Footer></Footer>
+      </Layout>
     </>
   );
 };
