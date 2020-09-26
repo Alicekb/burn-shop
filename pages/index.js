@@ -1,11 +1,14 @@
 import { Image, Transformation } from "cloudinary-react";
 import { withApollo } from "@/lib/withApollo";
+import { useTabState, TabPanel } from "reakit/Tab";
 import queryIndexItems from "../graphql/queryIndexItems";
 import styled from "@emotion/styled";
 import Layout from "@/components/Layout";
 import Slider from "@/components/Slider";
-import HomeTab from "@/components/HomeTab";
+import Item from "@/components/Item";
 import { AdList, AdItem } from "@/components/styles/AdArea";
+import { TabMenu, TabButton } from "@/components/styles/HomeTab";
+import { ItemGrid } from "@/components/Item/styles";
 
 export const MainArea = styled.div`
   margin-top: 80px;
@@ -71,6 +74,7 @@ const SLIDER_IMAGES = [
 
 const Home = () => {
   const [recent, announced, featured] = queryIndexItems();
+  const tab = useTabState({ selectedId: "tab1" });
 
   //! Implement a better loading/error process
   if (recent.loading || announced.loading || featured.loading) {
@@ -87,11 +91,61 @@ const Home = () => {
         <Slider sliderImages={SLIDER_IMAGES} />
         <MainArea>
           <div>
-            <HomeTab
-              recentItems={recent.data.items}
-              announcedItems={announced.data.items}
-              featuredItems={featured.data.items}
-            />
+            <TabMenu {...tab} aria-label="item tabs">
+              <TabButton {...tab} id="tab1">
+                NEW ARRIVALS
+              </TabButton>
+              <TabButton {...tab} id="tab2">
+                NEW ANNOUNCED
+              </TabButton>
+              <TabButton {...tab} id="tab3">
+                FEATURED ITEMS
+              </TabButton>
+            </TabMenu>
+            <TabPanel {...tab} tabIndex="-1">
+              <ItemGrid>
+                {recent.data.items.map((item) => (
+                  <li key={item.id}>
+                    <Item
+                      cloud_filename={item.cloud_filename}
+                      cost={item.cost}
+                      description={item.description}
+                      name={item.name}
+                      tag="new"
+                    />
+                  </li>
+                ))}
+              </ItemGrid>
+            </TabPanel>
+            <TabPanel {...tab} tabIndex="-1">
+              <ItemGrid>
+                {announced.data.items.map((item) => (
+                  <li key={item.id}>
+                    <Item
+                      cloud_filename={item.cloud_filename}
+                      cost={item.cost}
+                      description={item.description}
+                      name={item.name}
+                      tag="sale"
+                    />
+                  </li>
+                ))}
+              </ItemGrid>
+            </TabPanel>
+            <TabPanel {...tab} tabIndex="-1">
+              <ItemGrid>
+                {featured.data.items.map((item) => (
+                  <li key={item.id}>
+                    <Item
+                      cloud_filename={item.cloud_filename}
+                      cost={item.cost}
+                      description={item.description}
+                      name={item.name}
+                    />
+                  </li>
+                ))}
+              </ItemGrid>
+            </TabPanel>
           </div>
           <div>
             <AdList>
