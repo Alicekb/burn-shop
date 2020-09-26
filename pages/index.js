@@ -50,6 +50,25 @@ const ADS = [
   },
 ];
 
+const SLIDER_IMAGES = [
+  {
+    imgUrl: "coffee-station.jpg",
+    alt: "Coffee station cups of various colors",
+  },
+  {
+    imgUrl: "salvaing.jpg",
+    alt: "Savaging Services by Wessh Overguild over a broken plane",
+  },
+  {
+    imgUrl: "camera.jpg",
+    alt: "Advanced Camera red series next to red drone",
+  },
+  {
+    imgUrl: "cosmos.jpg",
+    alt: "Cosmos Interceptor Spaceship by Kosma Overguild and A.C.E Foundation",
+  },
+];
+
 const Home = () => {
   const [recent, announced, featured] = queryIndexItems();
 
@@ -65,7 +84,7 @@ const Home = () => {
   return (
     <>
       <Layout title="home">
-        <Slider />
+        <Slider sliderImages={SLIDER_IMAGES} />
         <MainArea>
           <div>
             <HomeTab
