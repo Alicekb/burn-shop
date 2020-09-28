@@ -13,7 +13,10 @@ const Item = ({ cloud_filename, cost, name, tag }) => {
   }
 
   return (
-    <Link href={"/products/[slug]"} as={`/products/${name.replace(" ", "-")}`}>
+    <Link
+      href={`/products/?slug=${name}`}
+      as={`/products/${name.replace(" ", "-")}`}
+    >
       <ItemBox>
         <ImageBox>
           <Image

@@ -17,8 +17,17 @@ const PageArea = styled(MainArea)`
   grid-template-columns: 1fr;
   justify-items: center;
 
-  h2 {
+  header {
     justify-self: start;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 0;
+      line-height: 1.8rem;
+    }
   }
 `;
 

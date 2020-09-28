@@ -1,24 +1,19 @@
 import styled from "@emotion/styled";
-import { Box } from "reakit/Box";
 
-const ItemBox = styled(Box)`
+const ItemBox = styled.a`
   width: 20rem;
   height: 100%;
   text-align: center;
 
   &:hover {
-    a {
-      color: ${({ theme: { colors } }) => colors.burnt};
-    }
+    color: ${({ theme: { colors } }) => colors.burnt};
     img {
       outline: 3px solid ${({ theme: { colors } }) => colors.burnt};
     }
   }
 
-  a {
-    color: black;
-    text-decoration: none;
-  }
+  color: black;
+  text-decoration: none;
 
   h2 {
     margin-top: 10px;
