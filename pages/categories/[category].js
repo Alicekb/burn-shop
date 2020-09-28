@@ -1,20 +1,10 @@
 import { useRouter } from "next/router";
 import { withApollo } from "@/lib/withApollo";
-import styled from "@emotion/styled";
 import Item from "@/components/Item";
 import Layout from "@/components/Layout";
-import { MainArea } from "@/pages/index";
 import { ItemGrid } from "@/components/Item/styles";
+import { PageArea } from "@/components/styles/PageLayouts";
 import queryCategory from "@/graphql/queryCategory";
-
-const PageArea = styled(MainArea)`
-  grid-template-columns: 1fr;
-  justify-items: center;
-
-  h2 {
-    justify-self: start;
-  }
-`;
 
 export const CategoryPage = () => {
   const router = useRouter();
