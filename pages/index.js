@@ -72,6 +72,20 @@ const Home = () => {
     return <div>Error!</div>;
   }
 
+  function generateItems(items) {
+    return items.map((item) => (
+      <li key={item.id}>
+        <Item
+          cloud_filename={item.cloud_filename}
+          cost={item.cost}
+          description={item.description}
+          name={item.name}
+          tag="new"
+        />
+      </li>
+    ));
+  }
+
   return (
     <>
       <Layout title="home">
@@ -90,48 +104,13 @@ const Home = () => {
               </TabButton>
             </TabMenu>
             <TabPanel {...tab} tabIndex="-1">
-              <ItemGrid>
-                {recent.data.items.map((item) => (
-                  <li key={item.id}>
-                    <Item
-                      cloud_filename={item.cloud_filename}
-                      cost={item.cost}
-                      description={item.description}
-                      name={item.name}
-                      tag="new"
-                    />
-                  </li>
-                ))}
-              </ItemGrid>
+              <ItemGrid>{generateItems(recent.data.items)}</ItemGrid>
             </TabPanel>
             <TabPanel {...tab} tabIndex="-1">
-              <ItemGrid>
-                {announced.data.items.map((item) => (
-                  <li key={item.id}>
-                    <Item
-                      cloud_filename={item.cloud_filename}
-                      cost={item.cost}
-                      description={item.description}
-                      name={item.name}
-                      tag="sale"
-                    />
-                  </li>
-                ))}
-              </ItemGrid>
+              <ItemGrid>{generateItems(announced.data.items)}</ItemGrid>
             </TabPanel>
             <TabPanel {...tab} tabIndex="-1">
-              <ItemGrid>
-                {featured.data.items.map((item) => (
-                  <li key={item.id}>
-                    <Item
-                      cloud_filename={item.cloud_filename}
-                      cost={item.cost}
-                      description={item.description}
-                      name={item.name}
-                    />
-                  </li>
-                ))}
-              </ItemGrid>
+              <ItemGrid>{generateItems(featured.data.items)}</ItemGrid>
             </TabPanel>
           </div>
           <div>

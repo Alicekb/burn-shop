@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Image, Transformation } from "cloudinary-react";
 import { ItemBox, ImageBox, NewTag, SalesTag } from "./styles";
 
@@ -6,14 +7,14 @@ const Item = ({ cloud_filename, cost, name, tag }) => {
     if (tag === "new") {
       return <NewTag>NEW</NewTag>;
     }
-
     if (tag == "sale") {
       return <SalesTag>SALE</SalesTag>;
     }
   }
+
   return (
-    <ItemBox>
-      <a href="">
+    <Link href={"/products/[slug]"} as={`/products/${name.replace(" ", "-")}`}>
+      <ItemBox>
         <ImageBox>
           <Image
             cloudName="aliceb"
@@ -26,8 +27,8 @@ const Item = ({ cloud_filename, cost, name, tag }) => {
         </ImageBox>
         <h2>{name}</h2>
         <p>{cost} Argent</p>
-      </a>
-    </ItemBox>
+      </ItemBox>
+    </Link>
   );
 };
 
