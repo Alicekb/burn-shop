@@ -1,4 +1,5 @@
 import { FaShoppingCart, FaUser, FaBurn } from "react-icons/fa";
+import Link from "next/link";
 import { NavBar, Logo } from "./styles";
 
 const Nav = () => {
@@ -6,8 +7,12 @@ const Nav = () => {
     <NavBar>
       <ul>
         <Logo>
-          <FaBurn />
-          burnbot
+          <Link href="/">
+            <a>
+              <FaBurn />
+              burnbot
+            </a>
+          </Link>
         </Logo>
         <li>Shop</li>
         <li>

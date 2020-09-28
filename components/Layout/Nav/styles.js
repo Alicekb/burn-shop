@@ -26,5 +26,8 @@ export const Logo = styled.li`
   align-items: center;
   font-size: 2rem;
   font-weight: 700;
-  color: ${(props) => props.theme.colors.burnt};
+
+  a {
+    color: ${(props) => props.theme.colors.burnt};
+  }
 `;
