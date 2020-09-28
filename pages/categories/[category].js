@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
-import styled from "@emotion/styled";
-import { useQuery, gql } from "@apollo/client";
 import { withApollo } from "@/lib/withApollo";
+import styled from "@emotion/styled";
 import Item from "@/components/Item";
 import Layout from "@/components/Layout";
 import { MainArea } from "@/pages/index";
 import { ItemGrid } from "@/components/Item/styles";
+import queryCategory from "@/graphql/queryCategory";
 
 const PageArea = styled(MainArea)`
   grid-template-columns: 1fr;
@@ -16,25 +16,10 @@ const PageArea = styled(MainArea)`
   }
 `;
 
-const GET_CATEGORY_ITEMS = gql`
-  query getCategoryItems($category: String) {
-    items(where: { category: { _eq: $category } }) {
-      id
-      category
-      name
-      cloud_filename
-    }
-  }
-`;
-
 export const CategoryPage = () => {
   const router = useRouter();
   const { category } = router.query;
-  const { loading, error, data } = useQuery(GET_CATEGORY_ITEMS, {
-    variables: {
-      category,
-    },
-  });
+  const { loading, error, items } = queryCategory(category);
 
   //! Implement a better loading/error process
   if (loading) {
@@ -65,7 +50,7 @@ export const CategoryPage = () => {
             ex! Quasi.
           </p>
           <ItemGrid>
-            {data.items.map((item) => (
+            {items.map((item) => (
               <li key={item.id}>
                 <Item
                   cloud_filename={item.cloud_filename}
