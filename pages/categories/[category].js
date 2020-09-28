@@ -24,7 +24,7 @@ export const CategoryPage = () => {
     <>
       <Layout title={category}>
         <PageArea>
-          <h2>{category.toUpperCase()}</h2>
+          <h1>{category.toUpperCase()}</h1>
 
           <img src="here.png" alt="banner alt" />
           <p>
