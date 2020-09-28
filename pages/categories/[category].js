@@ -1,24 +1,14 @@
 import { useRouter } from "next/router";
-import { withApollo } from "@/lib/withApollo";
+import { initializeApollo } from "@/lib/apolloClient";
 import Item from "@/components/Item";
 import Layout from "@/components/Layout";
 import { ItemGrid } from "@/components/Item/styles";
 import { PageArea } from "@/components/styles/PageLayouts";
-import queryCategory from "@/graphql/queryCategory";
+import { GET_CATEGORY_ITEMS } from "@/graphql/categories";
 
-export const CategoryPage = () => {
+export const CategoryPage = ({ initialApolloState: { items } }) => {
   const router = useRouter();
   const { category } = router.query;
-  const { loading, error, items } = queryCategory(category);
-
-  //! Implement a better loading/error process
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error!</div>;
-  }
 
   return (
     <>
@@ -58,4 +48,24 @@ export const CategoryPage = () => {
   );
 };
 
-export default withApollo()(CategoryPage);
+export async function getServerSideProps(context) {
+  const apolloClient = initializeApollo();
+  const { category } = context.params;
+
+  const queryData = await apolloClient.query({
+    query: GET_CATEGORY_ITEMS,
+    variables: {
+      category,
+    },
+  });
+
+  return {
+    props: {
+      initialApolloState: {
+        items: queryData.data.items,
+      },
+    },
+  };
+}
+
+export default CategoryPage;

@@ -1,4 +1,4 @@
-import { useQuery, gql } from "@apollo/client";
+import { gql } from "@apollo/client";
 
 const IndexPage = {
   fragments: {
@@ -40,12 +40,19 @@ const GET_FEATURED_ITEMS = gql`
   ${IndexPage.fragments.items}
 `;
 
-const queryIndexItems = () => {
-  const recent = useQuery(GET_RECENT_ITEMS);
-  const announced = useQuery(GET_ANNOUNCED_ITEMS);
-  const featured = useQuery(GET_FEATURED_ITEMS);
+const GET_ITEM = gql`
+  query getItem($name: String) {
+    items(where: { name: { _eq: $name } }) {
+      category
+      cloud_filename
+      cost
+      description
+      id
+      name
+      stats
+      subcategory
+    }
+  }
+`;
 
-  return [recent, announced, featured];
-};
-
-export default queryIndexItems;
+export { GET_RECENT_ITEMS, GET_ANNOUNCED_ITEMS, GET_FEATURED_ITEMS, GET_ITEM };

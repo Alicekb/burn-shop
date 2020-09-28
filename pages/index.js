@@ -1,7 +1,6 @@
 import { Image, Transformation } from "cloudinary-react";
-import { withApollo } from "@/lib/withApollo";
+import { initializeApollo } from "@/lib/apolloClient";
 import { useTabState, TabPanel } from "reakit/Tab";
-import queryIndexItems from "../graphql/queryIndexItems";
 import Layout from "@/components/Layout";
 import Slider from "@/components/Slider";
 import Item from "@/components/Item";
@@ -9,6 +8,11 @@ import { AdList, AdItem } from "@/components/styles/AdArea";
 import { TabMenu, TabButton } from "@/components/styles/HomeTab";
 import { ItemGrid } from "@/components/Item/styles";
 import { MainArea } from "@/components/styles/PageLayouts";
+import {
+  GET_RECENT_ITEMS,
+  GET_ANNOUNCED_ITEMS,
+  GET_FEATURED_ITEMS,
+} from "../graphql/Items";
 
 const ADS = [
   {
@@ -59,18 +63,8 @@ const SLIDER_IMAGES = [
   },
 ];
 
-const Home = () => {
-  const [recent, announced, featured] = queryIndexItems();
+const Home = ({ initialApolloState: { recent, announced, featured } }) => {
   const tab = useTabState({ selectedId: "tab1" });
-
-  //! Implement a better loading/error process
-  if (recent.loading || announced.loading || featured.loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (recent.error || announced.error || featured.error) {
-    return <div>Error!</div>;
-  }
 
   function generateItems(items) {
     return items.map((item) => (
@@ -104,13 +98,13 @@ const Home = () => {
               </TabButton>
             </TabMenu>
             <TabPanel {...tab} tabIndex="-1">
-              <ItemGrid>{generateItems(recent.data.items)}</ItemGrid>
+              <ItemGrid>{generateItems(recent)}</ItemGrid>
             </TabPanel>
             <TabPanel {...tab} tabIndex="-1">
-              <ItemGrid>{generateItems(announced.data.items)}</ItemGrid>
+              <ItemGrid>{generateItems(announced)}</ItemGrid>
             </TabPanel>
             <TabPanel {...tab} tabIndex="-1">
-              <ItemGrid>{generateItems(featured.data.items)}</ItemGrid>
+              <ItemGrid>{generateItems(featured)}</ItemGrid>
             </TabPanel>
           </div>
           <div>
@@ -140,4 +134,30 @@ const Home = () => {
   );
 };
 
-export default withApollo()(Home);
+export async function getServerSideProps() {
+  const apolloClient = initializeApollo();
+
+  const recent = await apolloClient.query({
+    query: GET_RECENT_ITEMS,
+  });
+
+  const announced = await apolloClient.query({
+    query: GET_ANNOUNCED_ITEMS,
+  });
+
+  const featured = await apolloClient.query({
+    query: GET_FEATURED_ITEMS,
+  });
+
+  return {
+    props: {
+      initialApolloState: {
+        recent: recent.data.items,
+        announced: announced.data.items,
+        featured: featured.data.items,
+      },
+    },
+  };
+}
+
+export default Home;

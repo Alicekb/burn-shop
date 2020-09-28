@@ -1,37 +1,24 @@
-import { useRouter } from "next/router";
-import { withApollo } from "@/lib/withApollo";
+import { initializeApollo } from "@/lib/apolloClient";
 import Layout from "@/components/Layout";
 import { PageArea } from "@/components/styles/PageLayouts";
-import queryProduct from "@/graphql/queryProduct";
+import { GET_ITEM } from "@/graphql/Items";
 
-const ProductPage = () => {
-  const router = useRouter();
-  const { slug } = router.query;
-  const formatedSlug = slug.replace("-", " ");
-  const { loading, error, item } = queryProduct(formatedSlug);
-
-  //! Implement a better loading/error process
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error!</div>;
-  }
+const ProductPage = ({ initialApolloState: { item } }) => {
   const {
     category,
     cloud_filename,
     cost,
     description,
     stats,
+    name,
     subcategory,
   } = item;
 
   return (
-    <Layout title={`${formatedSlug}`}>
+    <Layout title={name}>
       <PageArea>
         <header>
-          <h1>{formatedSlug}</h1>
+          <h1>{name}</h1>
           <h2>
             {category} {subcategory === "n/a" ? "" : `- ${subcategory}`}
           </h2>
@@ -45,4 +32,25 @@ const ProductPage = () => {
   );
 };
 
-export default withApollo()(ProductPage);
+export async function getServerSideProps(context) {
+  const apolloClient = initializeApollo();
+  const { slug } = context.params;
+  const name = slug.replace("-", " ");
+
+  const item = await apolloClient.query({
+    query: GET_ITEM,
+    variables: {
+      name,
+    },
+  });
+
+  return {
+    props: {
+      initialApolloState: {
+        item: item.data.items[0],
+      },
+    },
+  };
+}
+
+export default ProductPage;

@@ -1,3 +1,5 @@
+import { ApolloProvider } from "@apollo/client";
+import { useApollo } from "../lib/apolloClient";
 import "../styles/globals.css";
 import { ThemeProvider } from "emotion-theming";
 
@@ -12,12 +14,14 @@ const theme = {
   },
 };
 
-function MyApp({ Component, pageProps }) {
+export default function App({ Component, pageProps }) {
+  const apolloClient = useApollo(pageProps.initialApolloState);
+
   return (
     <ThemeProvider theme={theme}>
-      <Component {...pageProps} />
+      <ApolloProvider client={apolloClient}>
+        <Component {...pageProps} />
+      </ApolloProvider>
     </ThemeProvider>
   );
 }
-
-export default MyApp;
