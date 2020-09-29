@@ -1,4 +1,6 @@
+/** @jsx jsx */
 import Head from "next/head";
+import { jsx } from "@emotion/core";
 import Nav from "./Nav";
 import Footer from "./Footer";
 
@@ -10,7 +12,14 @@ const Layout = ({ title, children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Nav />
-      <main>{children}</main>
+      <main
+        css={{
+          position: "relative",
+          minHeight: "100vh",
+        }}
+      >
+        {children}
+      </main>
       <Footer />
     </>
   );

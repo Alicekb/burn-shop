@@ -1,8 +1,6 @@
 import styled from "@emotion/styled";
 
 const MainArea = styled.div`
-  margin-top: 80px;
-
   @media (min-width: 1000px) {
     max-width: 1180px;
     margin-left: auto;
@@ -11,6 +9,8 @@ const MainArea = styled.div`
 
   display: grid;
   grid-template-columns: 1fr 1fr;
+  margin-top: 80px;
+  height: 100%;
 `;
 
 const PageArea = styled(MainArea)`

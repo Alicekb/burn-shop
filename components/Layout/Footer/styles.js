@@ -2,14 +2,14 @@ import styled from "@emotion/styled";
 
 export const FooterArea = styled.footer`
   @media (min-width: 1000px) {
-    max-width: 1180px;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 1000px;
+    margin: 0 auto;
   }
 
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   padding: 1rem;
+  width: 100%;
 
   div {
     h4 {
