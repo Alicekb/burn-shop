@@ -11,7 +11,7 @@ const Nav = () => {
     <NavBar>
       <ul>
         <Logo>
-          <Link href="/">
+          <Link href="/" passHref>
             <a>
               <FaBurn />
               burnbot

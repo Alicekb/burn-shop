@@ -12,7 +12,7 @@ const NavBar = styled.nav`
     padding: 0;
 
     li:not(:first-of-type) {
-      margin-left: 15px;
+      margin-left: 25px;
       text-align: center;
     }
   }
@@ -53,7 +53,7 @@ const DropDown = styled.li`
     display: grid;
     border: 1px solid black;
     background-color: white;
-    left: -9px !important;
+    left: -14px !important;
     z-index: 9999;
 
     button {

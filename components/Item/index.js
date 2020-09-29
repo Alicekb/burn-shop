@@ -16,6 +16,7 @@ const Item = ({ cloud_filename, cost, name, tag }) => {
     <Link
       href={`/products/?slug=${name}`}
       as={`/products/${name.replace(" ", "-")}`}
+      passHref
     >
       <ItemBox>
         <ImageBox>
