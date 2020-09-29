@@ -33,8 +33,10 @@ const Logo = styled.li`
 `;
 
 const DropDown = styled.li`
-width: 100%;
-  &>button {
+  width: 100%;
+  font-size: 1rem;
+
+  & > button {
     padding-top: 3px;
     padding-bottom: 0;
 
@@ -43,15 +45,20 @@ width: 100%;
     }
   }
 
-  button:hover, div>button:hover {
+  button:hover {
     color: ${({ theme: { colors } }) => colors.burnt};
   }
 
-  &>div {
+  & > div {
     display: grid;
-    border: 1px solid ${({ theme: { colors } }) => colors.purple} !important;
+    border: 1px solid black;
     background-color: white;
     left: -9px !important;
+    z-index: 9999;
+
+    button {
+      padding: 1rem;
+    }
   }
 
   button {
@@ -62,18 +69,13 @@ width: 100%;
   ${({ visible, theme: { colors } }) => {
     if (visible) {
       return {
-        border: `1px solid ${colors.purple}`,
-        button: {
-          color: `${colors.purple} !important`
-        }
-      }
+        border: `1px solid black`,
+        "button:hover": {
+          color: `${colors.burnt}`,
+        },
+      };
     }
-  }
-  }
-`
+  }}
+`;
 
-export {
-  NavBar,
-  Logo,
-  DropDown
-}
+export { NavBar, Logo, DropDown };
