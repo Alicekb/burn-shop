@@ -17,6 +17,10 @@ const PageArea = styled(MainArea)`
   grid-template-columns: 1fr;
   justify-items: center;
 
+  ul {
+    justify-items: center;
+  }
+
   header {
     justify-self: start;
     h1,
