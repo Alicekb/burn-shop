@@ -50,7 +50,6 @@ const GET_ITEM = gql`
       id
       name
       stats
-      subcategory
     }
   }
 `;

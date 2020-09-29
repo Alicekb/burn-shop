@@ -4,24 +4,14 @@ import { PageArea } from "@/components/styles/PageLayouts";
 import { GET_ITEM } from "@/graphql/Items";
 
 const ProductPage = ({ initialApolloState: { item } }) => {
-  const {
-    category,
-    cloud_filename,
-    cost,
-    description,
-    stats,
-    name,
-    subcategory,
-  } = item;
+  const { category, cloud_filename, cost, description, stats, name } = item;
 
   return (
     <Layout title={name}>
       <PageArea>
         <header>
           <h1>{name}</h1>
-          <h2>
-            {category} {subcategory === "n/a" ? "" : `- ${subcategory}`}
-          </h2>
+          <h2>{category}</h2>
         </header>
         <img alt="image for item" />
         <p>{cost} Argent</p>
