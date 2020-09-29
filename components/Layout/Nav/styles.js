@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const NavBar = styled.nav`
+const NavBar = styled.nav`
   width: 90%;
   margin: 0 auto;
   margin-top: 5px;
@@ -21,7 +21,7 @@ export const NavBar = styled.nav`
   }
 `;
 
-export const Logo = styled.li`
+const Logo = styled.li`
   display: flex;
   align-items: center;
   font-size: 2rem;
@@ -31,3 +31,49 @@ export const Logo = styled.li`
     color: ${(props) => props.theme.colors.burnt};
   }
 `;
+
+const DropDown = styled.li`
+width: 100%;
+  &>button {
+    padding-top: 3px;
+    padding-bottom: 0;
+
+    svg {
+      padding-left: 5px;
+    }
+  }
+
+  button:hover, div>button:hover {
+    color: ${({ theme: { colors } }) => colors.burnt};
+  }
+
+  &>div {
+    display: grid;
+    border: 1px solid ${({ theme: { colors } }) => colors.purple} !important;
+    background-color: white;
+    left: -9px !important;
+  }
+
+  button {
+    background-color: transparent;
+    border: none;
+  }
+
+  ${({ visible, theme: { colors } }) => {
+    if (visible) {
+      return {
+        border: `1px solid ${colors.purple}`,
+        button: {
+          color: `${colors.purple} !important`
+        }
+      }
+    }
+  }
+  }
+`
+
+export {
+  NavBar,
+  Logo,
+  DropDown
+}
