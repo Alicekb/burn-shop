@@ -24,11 +24,31 @@ const Nav = () => {
             <BiDownArrow />
           </MenuButton>
           <Menu {...menu} aria-label="Preferences">
-            <MenuItem {...menu}>Adventuring</MenuItem>
-            <MenuItem {...menu}>Armor</MenuItem>
-            <MenuItem {...menu}>Misc</MenuItem>
-            <MenuItem {...menu}>Weapons</MenuItem>
-            <MenuItem {...menu}>Vehicles</MenuItem>
+            <Link href="/categories/adventuring" passHref>
+              <MenuItem {...menu} as="a">
+                Adventuring
+              </MenuItem>
+            </Link>
+            <Link href="/categories/armor" passHref>
+              <MenuItem {...menu} as="a">
+                Armor
+              </MenuItem>
+            </Link>
+            <Link href="/categories/misc" passHref>
+              <MenuItem {...menu} as="a">
+                Misc
+              </MenuItem>
+            </Link>
+            <Link href="/categories/weapons" passHref>
+              <MenuItem {...menu} as="a">
+                Weapons
+              </MenuItem>
+            </Link>
+            <Link href="/categories/vehicles" passHref>
+              <MenuItem {...menu} as="a">
+                Vehicles
+              </MenuItem>
+            </Link>
           </Menu>
         </DropDown>
         <li>

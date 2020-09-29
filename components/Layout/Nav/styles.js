@@ -41,7 +41,7 @@ const DropDown = styled.li`
     padding-bottom: 0;
 
     svg {
-      padding-left: 5px;
+      padding-left: 2px;
     }
   }
 
@@ -56,8 +56,14 @@ const DropDown = styled.li`
     left: -14px !important;
     z-index: 9999;
 
-    button {
-      padding: 1rem;
+    a {
+      padding: 0.5rem;
+      color: black;
+    }
+
+    a:hover {
+      color: ${({ theme: { colors } }) => colors.burnt} !important;
+      cursor: pointer;
     }
   }
 
