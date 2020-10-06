@@ -36,7 +36,7 @@ export const CategoryPage = ({ initialApolloState: { items } }) => {
             {items.map((item) => (
               <li key={item.id}>
                 <Item
-                  cloud_filename={item.cloud_filename}
+                  cloudFilename={item.cloud_filename}
                   cost={item.cost}
                   description={item.description}
                   name={item.name}

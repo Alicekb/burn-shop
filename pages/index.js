@@ -17,27 +17,27 @@ import {
 const ADS = [
   {
     title: "Basic and Advanced Cameras",
-    cloud_filename: "new-camera.png",
+    cloudFilename: "new-camera.png",
     alt: "DSLR camera facing upwards",
     description:
       "Check out all the latest advancements in cameras from the Good Smiles company.",
   },
   {
     title: "Weapons",
-    cloud_filename: "toy-gun.png",
+    cloudFilename: "toy-gun.png",
     alt: "Gun from arcade machine",
     description: "Check out all amazing weapons from the Senchal Overguild.",
   },
   {
     title: "Portable Generators",
-    cloud_filename: "generator.png",
+    cloudFilename: "generator.png",
     alt: "gas generator from a movie set",
     description:
       "Take a look at our entire selection of dynamic generators from the Wessh-Ozobny series!",
   },
   {
     title: "Medicine & Health",
-    cloud_filename: "project-meds.png",
+    cloudFilename: "project-meds.png",
     alt: "small yellow pack next to a hiking bottle",
     description:
       "Take a look at our entire selection of medicines from the Egan  Overguild!",
@@ -70,7 +70,7 @@ const Home = ({ initialApolloState: { recent, announced, featured } }) => {
     return items.map((item) => (
       <li key={item.id}>
         <Item
-          cloud_filename={item.cloud_filename}
+          cloudFilename={item.cloud_filename}
           cost={item.cost}
           description={item.description}
           name={item.name}
@@ -113,7 +113,7 @@ const Home = ({ initialApolloState: { recent, announced, featured } }) => {
                 <AdItem first={index === 0 ? true : false} key={index}>
                   <Image
                     cloudName="aliceb"
-                    publicId={`burn-shop/ads/${ad.cloud_filename}`}
+                    publicId={`burn-shop/ads/${ad.cloudFilename}`}
                     alt={ad.alt}
                   >
                     <Transformation width="250" height="500" crop="fit" />
