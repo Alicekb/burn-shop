@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const FooterArea = styled.footer`
   @media (min-width: 1000px) {
-    max-width: 1000px;
+    max-width: 1180px;
     margin: 0 auto;
   }
 
