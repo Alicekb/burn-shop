@@ -8,7 +8,8 @@ export const FooterArea = styled.footer`
 
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  padding: 1rem;
+  grid-gap: 2rem;
+  padding: 1rem 0;
   width: 100%;
 
   div {
@@ -16,7 +17,6 @@ export const FooterArea = styled.footer`
       border-top: 2px solid;
       border-bottom: 2px solid;
       border-color: ${({ theme: { colors } }) => colors.purple};
-      margin-right: 1.5rem;
     }
     ul {
       list-style: none;

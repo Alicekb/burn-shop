@@ -9,7 +9,7 @@ const MainArea = styled.div`
 
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin-top: 80px;
+  margin-top: 25px;
   height: 100%;
 `;
 
