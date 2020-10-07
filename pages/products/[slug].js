@@ -33,7 +33,7 @@ const ProductPage = ({ initialApolloState: { item, related } }) => {
           <Link href={`/categories/${categoryName}`}>
             {categoryCapitalized}
           </Link>
-          / {name}
+          / <span>{name}</span>
         </p>
         <Image
           cloudName="aliceb"
@@ -44,7 +44,8 @@ const ProductPage = ({ initialApolloState: { item, related } }) => {
           <Transformation width="400" height="400" crop="fill" />
         </Image>
         <div id="item-area">
-          <h1>{name}</h1>
+          <h1>{name.toUpperCase()}</h1>
+          <p>{stats}</p>
           <div>
             <p>
               <AiFillStar />
@@ -54,10 +55,9 @@ const ProductPage = ({ initialApolloState: { item, related } }) => {
               <AiOutlineStar /> 1 review
             </p>
           </div>
-          <p>{cost}💰</p>
-          <p>{stats}</p>
+          <p>${cost}</p>
           <p>{description}</p>
-          <form>
+          <form id="order-form">
             <label htmlFor="quantiy">Qty</label>
             <input type="number" id="quantiy" defaultValue={1} />
             <button>ADD TO CART</button>
@@ -113,9 +113,8 @@ const ProductPage = ({ initialApolloState: { item, related } }) => {
   );
 };
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps({ params: { slug } }) {
   const apolloClient = initializeApollo();
-  const { slug } = context.params;
   const name = slug.replace("-", " ");
 
   const item = await apolloClient.query({
