@@ -28,7 +28,7 @@ export const CategoryPage = ({ initialApolloState: { items } }) => {
       <Layout title={category}>
         <PageArea>
           <header>
-            <h1>{category.toUpperCase()}</h1>
+            <h1>{category.toUpperCase().replace("-", " ")}</h1>
             <img src="here.png" alt="banner alt" />
           </header>
           <p>{categoryDescriptions[category] || categoryDescriptions.misc}</p>

@@ -35,4 +35,36 @@ const PageArea = styled(MainArea)`
   }
 `;
 
-export { PageArea, MainArea };
+const ShowArea = styled(MainArea)`
+  display: grid;
+  grid-template-areas:
+    "show-link ."
+    "item-image item-area"
+    "reviews reviews"
+    "related related";
+
+  #show-link {
+    grid-area: show-link;
+  }
+
+  #item-image {
+    grid-area: item-image;
+    justify-self: center;
+  }
+
+  #item-area {
+    grid-area: item-area;
+  }
+
+  #reviews {
+    grid-area: reviews;
+    justify-self: stretch;
+  }
+
+  #related {
+    grid-area: related;
+    justify-self: center;
+  }
+`;
+
+export { PageArea, MainArea, ShowArea };

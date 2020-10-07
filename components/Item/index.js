@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Image, Transformation } from "cloudinary-react";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { ItemBox, ImageBox, NewTag, SalesTag } from "./styles";
 
 const Item = ({ cloudFilename, cost, name, tag }) => {
@@ -30,6 +31,13 @@ const Item = ({ cloudFilename, cost, name, tag }) => {
           {displayTag()}
         </ImageBox>
         <h2>{name}</h2>
+        <p>
+          <AiFillStar />
+          <AiFillStar />
+          <AiOutlineStar />
+          <AiOutlineStar />
+          <AiOutlineStar />
+        </p>
         <p>{cost} Argent</p>
       </ItemBox>
     </Link>
