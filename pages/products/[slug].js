@@ -45,15 +45,13 @@ const ProductPage = ({ initialApolloState: { item, related } }) => {
         </Image>
         <div id="item-area">
           <h1>{name.toUpperCase()}</h1>
-          <p>{stats}</p>
-          <div>
-            <p>
-              <AiFillStar />
-              <AiFillStar />
-              <AiFillStar />
-              <AiOutlineStar />
-              <AiOutlineStar /> 1 review
-            </p>
+          <h2>{stats}</h2>
+          <div className="ratings">
+            <AiFillStar />
+            <AiFillStar />
+            <AiFillStar />
+            <AiOutlineStar />
+            <AiOutlineStar /> 1 review
           </div>
           <p>${cost}</p>
           <p>{description}</p>
@@ -65,30 +63,32 @@ const ProductPage = ({ initialApolloState: { item, related } }) => {
           </form>
         </div>
         <div id="reviews">
-          <h2>CUSTOMER REVIEWS</h2>
-          <div>
-            <p>
-              <AiFillStar />
-              <AiFillStar />
-              <AiFillStar />
-              <AiOutlineStar />
-              <AiOutlineStar /> based on 1 review
-            </p>
-          </div>
-          <a href="/#">Write a review</a>
-          <div>
-            <h3>This is a fake review</h3>
+          <header>
+            <h2>CUSTOMER REVIEWS</h2>
             <div>
-              <p>
+              <div className="ratings">
                 <AiFillStar />
                 <AiFillStar />
                 <AiFillStar />
                 <AiOutlineStar />
-                <AiOutlineStar />
-              </p>
+                <AiOutlineStar /> based on 1 review
+              </div>
+              <a href="/#">Write a review</a>
             </div>
-            <p>Captain Kri on Kunye, 29, 3420</p>
-            <p>I love this binding net!</p>
+          </header>
+          <div className="user-review">
+            <div>
+              <div className="ratings">
+                <AiFillStar />
+                <AiFillStar />
+                <AiFillStar />
+                <AiOutlineStar />
+                <AiOutlineStar />
+              </div>
+              <h3>This is a fake review</h3>
+              <p>Captain Kri on Kunye, 29, 3420</p>
+              <p>I love this binding net!</p>
+            </div>
             <a href="/#">Report as Inappropriate</a>
           </div>
         </div>
@@ -102,7 +102,6 @@ const ProductPage = ({ initialApolloState: { item, related } }) => {
                   cost={item.cost}
                   description={item.description}
                   name={item.name}
-                  tag="new"
                 />
               </li>
             ))}

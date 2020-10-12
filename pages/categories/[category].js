@@ -40,7 +40,6 @@ export const CategoryPage = ({ initialApolloState: { items } }) => {
                   cost={item.cost}
                   description={item.description}
                   name={item.name}
-                  tag="new"
                 />
               </li>
             ))}

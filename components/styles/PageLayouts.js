@@ -42,6 +42,7 @@ const ShowArea = styled(MainArea)`
     "item-image item-area"
     "reviews reviews"
     "related related";
+  grid-row-gap: 1rem;
 
   #show-link {
     grid-area: show-link;
@@ -61,17 +62,16 @@ const ShowArea = styled(MainArea)`
 
   #item-area {
     grid-area: item-area;
-    line-height: 1.8rem;
 
-    h1 + p {
-      font-size: 1.5rem;
-      font-style: italic;
-      margin-bottom: 0.5rem;
+    h1 {
+      margin-bottom: 0;
     }
 
-    div > p {
-      margin: 0;
-      color: ${(props) => props.theme.colors.purple};
+    h2 {
+      font-size: 1.2rem;
+      font-style: italic;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
     }
 
     div + p {
@@ -79,6 +79,7 @@ const ShowArea = styled(MainArea)`
     }
 
     #order-form {
+      margin-top: 2rem;
       label {
         font-weight: 700;
         margin-right: 0.5rem;
@@ -104,6 +105,7 @@ const ShowArea = styled(MainArea)`
           };
         }}
       }
+
       button:last-of-type {
         ${({ theme: { colors } }) => {
           return {
@@ -123,8 +125,41 @@ const ShowArea = styled(MainArea)`
 
   #reviews {
     grid-area: reviews;
+    border: 2px solid #ecece7;
     justify-self: stretch;
     margin-top: 1rem;
+    padding: 1rem;
+
+    header > div,
+    .user-review {
+      display: flex;
+      flex-direction: column;
+
+      a {
+        align-self: flex-end;
+      }
+    }
+
+    .user-review {
+      margin-top: 1rem;
+      line-height: 2rem;
+      padding-top: 1rem;
+      border-top: 2px solid #ecece7;
+
+      h3 {
+        font-size: 1.3rem;
+      }
+
+      p:first-of-type {
+        font-style: italic;
+      }
+    }
+  }
+
+  .ratings {
+    margin: 0;
+    color: ${(props) => props.theme.colors.purple};
+    font-size: 1.3rem;
   }
 
   #related {

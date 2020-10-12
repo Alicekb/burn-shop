@@ -38,7 +38,7 @@ const Item = ({ cloudFilename, cost, name, tag }) => {
           <AiOutlineStar />
           <AiOutlineStar />
         </p>
-        <p>{cost} Argent</p>
+        <p>${cost}</p>
       </ItemBox>
     </Link>
   );
