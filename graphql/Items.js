@@ -54,4 +54,18 @@ const GET_ITEM = gql`
   }
 `;
 
-export { GET_RECENT_ITEMS, GET_ANNOUNCED_ITEMS, GET_FEATURED_ITEMS, GET_ITEM };
+const GET_ALL_ITEM_NAMES = gql`
+  query ItemNames {
+    items {
+      name
+    }
+  }
+`;
+
+export {
+  GET_RECENT_ITEMS,
+  GET_ANNOUNCED_ITEMS,
+  GET_FEATURED_ITEMS,
+  GET_ITEM,
+  GET_ALL_ITEM_NAMES,
+};

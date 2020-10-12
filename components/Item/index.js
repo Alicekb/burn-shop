@@ -16,7 +16,7 @@ const Item = ({ cloudFilename, cost, name, tag }) => {
   return (
     <Link
       href={`/products/?slug=${name}`}
-      as={`/products/${name.replace(" ", "-")}`}
+      as={`/products/${name.replace(/\s/g, "-")}`}
       passHref
     >
       <ItemBox>

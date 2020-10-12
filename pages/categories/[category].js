@@ -16,7 +16,7 @@ export const CategoryPage = ({ initialApolloState: { items } }) => {
       <Layout title={category}>
         <PageArea>
           <header>
-            <h1>{category.toUpperCase().replace("-", " ")}</h1>
+            <h1>{category.toUpperCase().replace(/-/g, " ")}</h1>
             <img src="here.png" alt="banner alt" />
           </header>
           <p>{CATEGORY_DESCRIPTIONS[category] || CATEGORY_DESCRIPTIONS.misc}</p>
@@ -38,10 +38,29 @@ export const CategoryPage = ({ initialApolloState: { items } }) => {
   );
 };
 
-export async function getServerSideProps(context) {
+export async function getStaticPaths() {
+  const paths = [
+    { params: { category: "adventuring-gear" } },
+    { params: { category: "armor" } },
+    { params: { category: "art-supplies" } },
+    { params: { category: "athletic-supplies" } },
+    { params: { category: "cameras" } },
+    { params: { category: "clothing" } },
+    { params: { category: "food-supplies" } },
+    { params: { category: "gaming" } },
+    { params: { category: "musical-instruments" } },
+    { params: { category: "weapons" } },
+    { params: { category: "vehicles" } },
+  ];
+
+  return { paths, fallback: false };
+}
+
+export async function getStaticProps({ params }) {
   const apolloClient = initializeApollo();
-  const { category } = context.params;
-  const formatedCategory = category.replace("-", " ");
+  const { category } = params;
+
+  const formatedCategory = category.replace(/-/g, " ");
 
   const queryData = await apolloClient.query({
     query: GET_CATEGORY_ITEMS,
@@ -56,6 +75,7 @@ export async function getServerSideProps(context) {
         items: queryData.data.items,
       },
     },
+    revalidate: 60,
   };
 }
 

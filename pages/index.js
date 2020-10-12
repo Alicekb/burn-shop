@@ -86,7 +86,7 @@ const Home = ({ initialApolloState: { recent, announced, featured } }) => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const apolloClient = initializeApollo();
 
   const recent = await apolloClient.query({
@@ -109,6 +109,7 @@ export async function getServerSideProps() {
         featured: featured.data.items,
       },
     },
+    revalidate: 60,
   };
 }
 

@@ -6,7 +6,7 @@ import Layout from "@/components/Layout";
 import Item from "@/components/Item";
 import { ShowArea } from "@/components/styles/PageLayouts";
 import { ItemGrid } from "@/components/Item/styles";
-import { GET_ITEM } from "@/graphql/Items";
+import { GET_ITEM, GET_ALL_ITEM_NAMES } from "@/graphql/Items";
 import { GET_RELATED_ITEMS } from "@/graphql/categories";
 
 const ProductPage = ({ initialApolloState: { item, related } }) => {
@@ -18,7 +18,7 @@ const ProductPage = ({ initialApolloState: { item, related } }) => {
     stats,
     name,
   } = item;
-  const categoryName = category.replace("-", " ");
+  const categoryName = category.replace(/-/g, " ");
   const categoryCapitalized =
     category.charAt(0).toUpperCase() + categoryName.slice(1);
 
@@ -112,9 +112,25 @@ const ProductPage = ({ initialApolloState: { item, related } }) => {
   );
 };
 
-export async function getServerSideProps({ params: { slug } }) {
+export async function getStaticPaths() {
   const apolloClient = initializeApollo();
-  const name = slug.replace("-", " ");
+  const products = await apolloClient.query({
+    query: GET_ALL_ITEM_NAMES,
+  });
+
+  const paths = products.data.items.map((product) => ({
+    params: { slug: product.name.replace(/\s/g, "-") },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }) {
+  const apolloClient = initializeApollo();
+  const name = params.slug.replace(/-/g, " ");
 
   const item = await apolloClient.query({
     query: GET_ITEM,
@@ -139,6 +155,7 @@ export async function getServerSideProps({ params: { slug } }) {
         },
       },
     },
+    revalidate: 60,
   };
 }
 
