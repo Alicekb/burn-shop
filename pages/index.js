@@ -66,7 +66,7 @@ const SLIDER_IMAGES = [
 const Home = ({ initialApolloState: { recent, announced, featured } }) => {
   const tab = useTabState({ selectedId: "tab1" });
 
-  function generateItems(items) {
+  function generateItems(items, tag) {
     return items.map((item) => (
       <li key={item.id}>
         <Item
@@ -74,7 +74,7 @@ const Home = ({ initialApolloState: { recent, announced, featured } }) => {
           cost={item.cost}
           description={item.description}
           name={item.name}
-          tag="new"
+          tag={tag}
         />
       </li>
     ));
@@ -84,7 +84,7 @@ const Home = ({ initialApolloState: { recent, announced, featured } }) => {
     <>
       <Layout title="home">
         <Slider sliderImages={SLIDER_IMAGES} />
-        <MainArea>
+        <MainArea style={{ marginTop: "4rem" }}>
           <div>
             <TabMenu {...tab} aria-label="item tabs">
               <TabButton {...tab} id="tab1">
@@ -98,10 +98,10 @@ const Home = ({ initialApolloState: { recent, announced, featured } }) => {
               </TabButton>
             </TabMenu>
             <TabPanel {...tab} tabIndex="-1">
-              <ItemGrid>{generateItems(recent)}</ItemGrid>
+              <ItemGrid>{generateItems(recent, "new")}</ItemGrid>
             </TabPanel>
             <TabPanel {...tab} tabIndex="-1">
-              <ItemGrid>{generateItems(announced)}</ItemGrid>
+              <ItemGrid>{generateItems(announced, "sale")}</ItemGrid>
             </TabPanel>
             <TabPanel {...tab} tabIndex="-1">
               <ItemGrid>{generateItems(featured)}</ItemGrid>
