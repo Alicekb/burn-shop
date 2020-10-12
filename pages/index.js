@@ -13,55 +13,7 @@ import {
   GET_ANNOUNCED_ITEMS,
   GET_FEATURED_ITEMS,
 } from "../graphql/Items";
-
-const ADS = [
-  {
-    title: "Basic and Advanced Cameras",
-    cloudFilename: "new-camera.png",
-    alt: "DSLR camera facing upwards",
-    description:
-      "Check out all the latest advancements in cameras from the Good Smiles company.",
-  },
-  {
-    title: "Weapons",
-    cloudFilename: "toy-gun.png",
-    alt: "Gun from arcade machine",
-    description: "Check out all amazing weapons from the Senchal Overguild.",
-  },
-  {
-    title: "Portable Generators",
-    cloudFilename: "generator.png",
-    alt: "gas generator from a movie set",
-    description:
-      "Take a look at our entire selection of dynamic generators from the Wessh-Ozobny series!",
-  },
-  {
-    title: "Medicine & Health",
-    cloudFilename: "project-meds.png",
-    alt: "small yellow pack next to a hiking bottle",
-    description:
-      "Take a look at our entire selection of medicines from the Egan  Overguild!",
-  },
-];
-
-const SLIDER_IMAGES = [
-  {
-    imgUrl: "coffee-station.jpg",
-    alt: "Coffee station cups of various colors",
-  },
-  {
-    imgUrl: "salvaing.jpg",
-    alt: "Savaging Services by Wessh Overguild over a broken plane",
-  },
-  {
-    imgUrl: "camera.jpg",
-    alt: "Advanced Camera red series next to red drone",
-  },
-  {
-    imgUrl: "cosmos.jpg",
-    alt: "Cosmos Interceptor Spaceship by Kosma Overguild and A.C.E Foundation",
-  },
-];
+import { ADS, SLIDER_IMAGES } from "@/utils/constants";
 
 const Home = ({ initialApolloState: { recent, announced, featured } }) => {
   const tab = useTabState({ selectedId: "tab1" });
