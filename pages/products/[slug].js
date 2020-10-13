@@ -119,8 +119,6 @@ export async function getStaticPaths() {
     `
   );
 
-  console.log(items.length);
-
   const paths = items.map((item) => ({
     params: { slug: item.name.replace(/\s/g, "-") },
   }));
@@ -169,8 +167,6 @@ export async function getStaticProps({ params: { slug } }) {
     `,
     { name: item.category.name }
   );
-
-  console.log("category", category);
 
   return {
     props: {
