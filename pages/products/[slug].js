@@ -10,9 +10,9 @@ import { ItemGrid } from "@/components/Item/styles";
 
 const ProductPage = ({ item, related }) => {
   const { category, cloudFilename, cost, description, stats, name } = item;
-  const categoryName = category.replace(/-/g, " ");
+  const categoryFormated = category.replace(/\s/g, "-");
   const categoryCapitalized =
-    category.charAt(0).toUpperCase() + categoryName.slice(1);
+    category.charAt(0).toUpperCase() + category.slice(1);
 
   return (
     <Layout title={name}>
@@ -22,7 +22,7 @@ const ProductPage = ({ item, related }) => {
             Home
           </Link>
           /
-          <Link href={`/categories/${categoryName}`}>
+          <Link href={`/categories/${categoryFormated}`}>
             {categoryCapitalized}
           </Link>
           / <span>{name}</span>
