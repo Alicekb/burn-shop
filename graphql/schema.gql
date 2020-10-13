@@ -1,0 +1,32 @@
+type Item @collection(name: "items") {
+  name: String!
+  description: String!
+  cost: Int!
+  cloudFilename: String!
+  category: Category!
+  stats: String!
+  # reviews: [Review] @relation
+}
+
+type Category @collection(name: "categories") {
+  name: String!
+  description: String!
+  items: [Item!] @relation
+}
+
+# type Review @collection(name: "reviews") {
+#   item: Item!
+#   user: User!
+# }
+
+# type Users @collection(name: "users"){
+#   reviews: [Review] @relation
+# }
+
+type Query {
+  allItems: [Item!]! @index(name: "all_items")
+  allCategories: [Category!]! @index(name: "all_categories")
+  findItemByName(name: String!): Item! @index(name: "find_item_by_name")
+  findCategoryByName(name: String!): Category!
+    @index(name: "find_category_by_name")
+}

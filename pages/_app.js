@@ -1,8 +1,6 @@
 import { useEffect } from "react";
-import { ApolloProvider } from "@apollo/client";
 import { useRouter } from "next/router";
 import NProgress from "nprogress";
-import { useApollo } from "../lib/apolloClient";
 import { ThemeProvider } from "emotion-theming";
 import "../styles/globals.css";
 import "../styles/nprogress.css";
@@ -19,7 +17,6 @@ const theme = {
 };
 
 export default function App({ Component, pageProps }) {
-  const apolloClient = useApollo(pageProps.initialApolloState);
   const router = useRouter();
 
   useEffect(() => {
@@ -44,9 +41,7 @@ export default function App({ Component, pageProps }) {
 
   return (
     <ThemeProvider theme={theme}>
-      <ApolloProvider client={apolloClient}>
-        <Component {...pageProps} />
-      </ApolloProvider>
+      <Component {...pageProps} />
     </ThemeProvider>
   );
 }

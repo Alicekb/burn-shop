@@ -1,5 +1,6 @@
 import { Image, Transformation } from "cloudinary-react";
-import { initializeApollo } from "@/lib/apolloClient";
+import { graphQLClient } from "@/lib/graphql-client";
+import { gql } from "graphql-request";
 import { useTabState, TabPanel } from "reakit/Tab";
 import Layout from "@/components/Layout";
 import Slider from "@/components/Slider";
@@ -8,21 +9,16 @@ import { AdList, AdItem } from "@/components/styles/AdArea";
 import { TabMenu, TabButton } from "@/components/styles/HomeTab";
 import { ItemGrid } from "@/components/Item/styles";
 import { MainArea } from "@/components/styles/PageLayouts";
-import {
-  GET_RECENT_ITEMS,
-  GET_ANNOUNCED_ITEMS,
-  GET_FEATURED_ITEMS,
-} from "../graphql/Items";
 import { ADS, SLIDER_IMAGES } from "@/utils/constants";
 
-const Home = ({ initialApolloState: { recent, announced, featured } }) => {
+const Home = ({ items: { recent, announced, featured } }) => {
   const tab = useTabState({ selectedId: "tab1" });
 
   function generateItems(items, tag) {
     return items.map((item) => (
-      <li key={item.id}>
+      <li key={item._id}>
         <Item
-          cloudFilename={item.cloud_filename}
+          cloudFilename={item.cloudFilename}
           cost={item.cost}
           description={item.description}
           name={item.name}
@@ -87,26 +83,33 @@ const Home = ({ initialApolloState: { recent, announced, featured } }) => {
 };
 
 export async function getStaticProps() {
-  const apolloClient = initializeApollo();
+  const {
+    allItems: { data: items },
+  } = await graphQLClient.request(gql`
+    {
+      allItems {
+        data {
+          _id
+          cloudFilename
+          cost
+          name
+        }
+      }
+    }
+  `);
 
-  const recent = await apolloClient.query({
-    query: GET_RECENT_ITEMS,
-  });
+  const recent = [...items].slice(0, 19);
 
-  const announced = await apolloClient.query({
-    query: GET_ANNOUNCED_ITEMS,
-  });
+  const announced = [...items].reverse().slice(0, 19);
 
-  const featured = await apolloClient.query({
-    query: GET_FEATURED_ITEMS,
-  });
+  const featured = items.slice(19, 38);
 
   return {
     props: {
-      initialApolloState: {
-        recent: recent.data.items,
-        announced: announced.data.items,
-        featured: featured.data.items,
+      items: {
+        recent,
+        announced,
+        featured,
       },
     },
     revalidate: 60,

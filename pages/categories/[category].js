@@ -1,30 +1,25 @@
-import { useRouter } from "next/router";
-import { initializeApollo } from "@/lib/apolloClient";
+import { graphQLClient } from "@/lib/graphql-client";
+import { gql } from "graphql-request";
 import Item from "@/components/Item";
 import Layout from "@/components/Layout";
 import { ItemGrid } from "@/components/Item/styles";
 import { PageArea } from "@/components/styles/PageLayouts";
-import { GET_CATEGORY_ITEMS } from "@/graphql/categories";
-import { CATEGORY_DESCRIPTIONS } from "@/utils/constants";
 
-export const CategoryPage = ({ initialApolloState: { items } }) => {
-  const router = useRouter();
-  const { category } = router.query;
-
+export const CategoryPage = ({ category: { name, description, items } }) => {
   return (
     <>
-      <Layout title={category}>
+      <Layout title={name}>
         <PageArea>
           <header>
-            <h1>{category.toUpperCase().replace(/-/g, " ")}</h1>
+            <h1>{name.toUpperCase()}</h1>
             <img src="here.png" alt="banner alt" />
           </header>
-          <p>{CATEGORY_DESCRIPTIONS[category] || CATEGORY_DESCRIPTIONS.misc}</p>
+          <p>{description}</p>
           <ItemGrid>
             {items.map((item) => (
-              <li key={item.id}>
+              <li key={item._id}>
                 <Item
-                  cloudFilename={item.cloud_filename}
+                  cloudFilename={item.cloudFilename}
                   cost={item.cost}
                   description={item.description}
                   name={item.name}
@@ -57,22 +52,37 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const apolloClient = initializeApollo();
   const { category } = params;
 
   const formatedCategory = category.replace(/-/g, " ");
 
-  const queryData = await apolloClient.query({
-    query: GET_CATEGORY_ITEMS,
-    variables: {
-      category: formatedCategory,
-    },
-  });
+  const { findCategoryByName } = await graphQLClient.request(
+    gql`
+      query GetCategory($name: String!) {
+        findCategoryByName(name: $name) {
+          name
+          description
+          items {
+            data {
+              _id
+              cloudFilename
+              cost
+              description
+              name
+            }
+          }
+        }
+      }
+    `,
+    { name: formatedCategory }
+  );
 
   return {
     props: {
-      initialApolloState: {
-        items: queryData.data.items,
+      category: {
+        name: findCategoryByName.name,
+        description: findCategoryByName.description,
+        items: findCategoryByName.items.data,
       },
     },
     revalidate: 60,

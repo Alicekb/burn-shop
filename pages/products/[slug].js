@@ -1,23 +1,15 @@
 import Link from "next/link";
+import { graphQLClient } from "@/lib/graphql-client";
+import { gql } from "graphql-request";
 import { Image, Transformation } from "cloudinary-react";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
-import { initializeApollo } from "@/lib/apolloClient";
 import Layout from "@/components/Layout";
 import Item from "@/components/Item";
 import { ShowArea } from "@/components/styles/PageLayouts";
 import { ItemGrid } from "@/components/Item/styles";
-import { GET_ITEM, GET_ALL_ITEM_NAMES } from "@/graphql/Items";
-import { GET_RELATED_ITEMS } from "@/graphql/categories";
 
-const ProductPage = ({ initialApolloState: { item, related } }) => {
-  const {
-    category,
-    cloud_filename: cloudFilename,
-    cost,
-    description,
-    stats,
-    name,
-  } = item;
+const ProductPage = ({ item, related }) => {
+  const { category, cloudFilename, cost, description, stats, name } = item;
   const categoryName = category.replace(/-/g, " ");
   const categoryCapitalized =
     category.charAt(0).toUpperCase() + categoryName.slice(1);
@@ -95,10 +87,10 @@ const ProductPage = ({ initialApolloState: { item, related } }) => {
         <div id="related">
           <h2>YOU MIGHT ALSO LIKE</h2>
           <ItemGrid>
-            {related.items.map((item) => (
-              <li key={item.id}>
+            {related.map((item) => (
+              <li key={item._id}>
                 <Item
-                  cloudFilename={item.cloud_filename}
+                  cloudFilename={item.cloudFilename}
                   cost={item.cost}
                   description={item.description}
                   name={item.name}
@@ -113,13 +105,24 @@ const ProductPage = ({ initialApolloState: { item, related } }) => {
 };
 
 export async function getStaticPaths() {
-  const apolloClient = initializeApollo();
-  const products = await apolloClient.query({
-    query: GET_ALL_ITEM_NAMES,
-  });
+  const {
+    allItems: { data: items },
+  } = await graphQLClient.request(
+    gql`
+      {
+        allItems(_size: 10000) {
+          data {
+            name
+          }
+        }
+      }
+    `
+  );
 
-  const paths = products.data.items.map((product) => ({
-    params: { slug: product.name.replace(/\s/g, "-") },
+  console.log(items.length);
+
+  const paths = items.map((item) => ({
+    params: { slug: item.name.replace(/\s/g, "-") },
   }));
 
   return {
@@ -128,32 +131,54 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }) {
-  const apolloClient = initializeApollo();
-  const name = params.slug.replace(/-/g, " ");
+export async function getStaticProps({ params: { slug } }) {
+  const name = slug.replace(/-/g, " ");
+  const { findItemByName: item } = await graphQLClient.request(
+    gql`
+      query GetItem($name: String!) {
+        findItemByName(name: $name) {
+          category {
+            name
+          }
+          cloudFilename
+          cost
+          description
+          stats
+          name
+        }
+      }
+    `,
+    { name }
+  );
 
-  const item = await apolloClient.query({
-    query: GET_ITEM,
-    variables: {
-      name,
-    },
-  });
+  const { findCategoryByName: category } = await graphQLClient.request(
+    gql`
+      query GetCategory($name: String!) {
+        findCategoryByName(name: $name) {
+          items {
+            data {
+              _id
+              cloudFilename
+              cost
+              description
+              name
+            }
+          }
+        }
+      }
+    `,
+    { name: item.category.name }
+  );
 
-  const items = await apolloClient.query({
-    query: GET_RELATED_ITEMS,
-    variables: {
-      category: item.category,
-    },
-  });
+  console.log("category", category);
 
   return {
     props: {
-      initialApolloState: {
-        item: item.data.items[0],
-        related: {
-          items: items.data.items,
-        },
+      item: {
+        ...item,
+        category: item.category.name,
       },
+      related: category.items.data.slice(0, 4),
     },
     revalidate: 60,
   };
